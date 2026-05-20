@@ -1,0 +1,1450 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExperiLab Prototype</title>
+  <style>
+:root {
+  --ink: #03070f;
+  --ink-2: #060d1a;
+  --ink-3: #0a1525;
+  --text: #e8eeff;
+  --muted: #8d9cc0;
+  --dim: #6f7f9f;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-2: rgba(255, 255, 255, 0.16);
+  --glass: rgba(255, 255, 255, 0.045);
+  --glass-2: rgba(255, 255, 255, 0.075);
+  --teal: #3ecfaa;
+  --teal-d: #2baa8b;
+  --violet: #8b7cf8;
+  --amber: #f5a623;
+  --danger: #ff8b7b;
+  --shadow: 0 32px 80px rgba(0, 0, 0, 0.55);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --max: 1160px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse 900px 600px at 10% -8%, rgba(62, 207, 170, 0.08), transparent 60%),
+    radial-gradient(ellipse 720px 520px at 95% 7%, rgba(139, 124, 248, 0.09), transparent 56%),
+    linear-gradient(180deg, var(--ink), var(--ink-2));
+  font-family: Rubik, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.topbar {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-inline: max(1.2rem, calc((100vw - var(--max)) / 2));
+  border-bottom: 1px solid var(--line);
+  background: rgba(3, 7, 15, 0.72);
+  backdrop-filter: saturate(180%) blur(22px);
+}
+
+.brand,
+.topbar__right {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  gap: 0.7rem;
+}
+
+.brand__icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(62, 207, 170, 0.25);
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(62, 207, 170, 0.2), rgba(139, 124, 248, 0.18));
+  color: var(--teal);
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.brand__name {
+  font-size: 1.12rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  background: linear-gradient(110deg, var(--teal), #a5f0dc, var(--violet), #a0c4ff);
+  background-size: 240% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 8s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 240% center;
+  }
+}
+
+.topbar__right {
+  gap: 0.35rem;
+}
+
+.nav-link {
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.nav-link:hover {
+  color: var(--text);
+  background: var(--glass-2);
+}
+
+.nav-link--cta {
+  border: 1px solid rgba(62, 207, 170, 0.24);
+  background: rgba(62, 207, 170, 0.12);
+  color: var(--teal);
+  font-weight: 800;
+}
+
+.app-shell {
+  width: min(var(--max), calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 64px 0 5rem;
+}
+
+.home-page {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(320px, 1.1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  min-height: 100dvh;
+  padding-block: 4rem;
+}
+
+.orb {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(95px);
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+.orb--one {
+  width: 480px;
+  height: 480px;
+  inset-block-start: 7%;
+  inset-inline-start: -18%;
+  background: var(--teal);
+}
+
+.orb--two {
+  width: 380px;
+  height: 380px;
+  inset-block-end: 12%;
+  inset-inline-end: -10%;
+  background: var(--violet);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1.4rem;
+  border: 1px solid rgba(62, 207, 170, 0.25);
+  border-radius: 999px;
+  background: rgba(62, 207, 170, 0.08);
+  color: var(--teal);
+  padding: 0.42rem 0.95rem;
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 14px var(--teal);
+}
+
+.home-copy h1,
+.brand-block h1 {
+  margin: 0;
+  font-weight: 950;
+  letter-spacing: -0.06em;
+  line-height: 0.98;
+}
+
+.home-copy h1 {
+  max-width: 820px;
+  font-size: clamp(3rem, 7vw, 5.7rem);
+}
+
+.brand-block h1 {
+  font-size: clamp(2.1rem, 5vw, 3.8rem);
+}
+
+.home-copy h1::after,
+.brand-block h1::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 4px;
+  margin-top: 1.2rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--teal), var(--violet));
+  box-shadow: 0 0 26px rgba(62, 207, 170, 0.35);
+}
+
+.hero-copy {
+  max-width: 58ch;
+  margin: 1.35rem 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.16rem);
+  line-height: 1.85;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.4rem;
+}
+
+.primary-button,
+.back-button,
+.reset-button {
+  border: 0;
+  border-radius: var(--radius);
+  font-weight: 900;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.05rem 2.15rem;
+  background: linear-gradient(135deg, var(--teal), var(--teal-d));
+  color: #031f18;
+  box-shadow: 0 16px 48px rgba(62, 207, 170, 0.3);
+}
+
+.primary-button:hover,
+.back-button:hover,
+.reset-button:hover {
+  transform: translateY(-3px);
+}
+
+.primary-button:hover {
+  box-shadow: 0 0 0 6px rgba(62, 207, 170, 0.14), 0 22px 56px rgba(62, 207, 170, 0.34);
+}
+
+.hero-hint {
+  color: var(--dim);
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
+.home-photo {
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--glass);
+  box-shadow: var(--shadow);
+}
+
+.home-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 48%, rgba(3, 7, 15, 0.65));
+  pointer-events: none;
+}
+
+.home-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  object-fit: cover;
+  opacity: 0.9;
+}
+
+.experiments-page,
+.detail-page {
+  padding-top: 2.4rem;
+}
+
+.hero-panel,
+.library-panel,
+.detail-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--glass);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.34);
+}
+
+.hero-panel {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(280px, 420px);
+  gap: 1.2rem;
+  align-items: end;
+  padding: clamp(1.2rem, 4vw, 2rem);
+  margin-bottom: 1rem;
+}
+
+.category-row,
+.topic-row {
+  grid-column: 1 / -1;
+}
+
+.quick-start,
+.category-row,
+.topic-row {
+  display: grid;
+  gap: 0.7rem;
+}
+
+label,
+.filter-group h2 {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+input[type="search"] {
+  width: 100%;
+  height: 52px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--text);
+  padding: 0 1rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+input[type="search"]::placeholder {
+  color: var(--dim);
+}
+
+input[type="search"]:focus {
+  border-color: rgba(62, 207, 170, 0.5);
+  background: var(--glass-2);
+}
+
+.segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.segmented--primary .filter-button {
+  min-height: 46px;
+  padding-inline: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.filter-button {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  padding: 0 1rem;
+  font-weight: 750;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.filter-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--line-2);
+  background: var(--glass-2);
+  color: var(--text);
+}
+
+.filter-button.active {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--teal), var(--teal-d));
+  color: #031f18;
+  font-weight: 900;
+}
+
+.library-panel {
+  padding: 1.2rem;
+}
+
+.library-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.library-header h2 {
+  margin: 0;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  letter-spacing: -0.04em;
+}
+
+.reset-button,
+.back-button {
+  border: 1px solid var(--line-2);
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--text);
+  padding: 0.75rem 1rem;
+}
+
+.experiment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.experiment-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 350px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--glass);
+  color: var(--text);
+  text-align: left;
+  padding: 0;
+  transition: transform 0.22s cubic-bezier(.22,1,.36,1), border-color 0.22s, box-shadow 0.22s, background 0.22s;
+}
+
+.experiment-card:hover,
+.experiment-card.active {
+  transform: translateY(-5px);
+  border-color: var(--line-2);
+  background: var(--glass-2);
+  box-shadow: var(--shadow);
+}
+
+.risk-band {
+  display: none;
+}
+
+.preview-art {
+  display: block;
+  width: 100%;
+  height: 170px;
+  border-bottom: 1px solid var(--line);
+  background-position: center;
+  background-size: cover;
+  transition: transform 0.45s cubic-bezier(.22,1,.36,1);
+}
+
+.experiment-card:hover .preview-art {
+  transform: scale(1.045);
+}
+
+.card-meta,
+.card-title,
+.card-result,
+.card-stats {
+  margin-inline: 1rem;
+}
+
+.card-meta {
+  align-self: start;
+  margin-top: 1rem;
+  border: 1px solid rgba(62, 207, 170, 0.22);
+  border-radius: 999px;
+  background: rgba(62, 207, 170, 0.1);
+  color: var(--teal);
+  padding: 0.27rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.card-title {
+  margin-top: 0.55rem;
+  font-size: 1.06rem;
+  font-weight: 850;
+  line-height: 1.28;
+}
+
+.card-result {
+  margin-top: 0.4rem;
+  color: var(--muted);
+  line-height: 1.62;
+  font-size: 0.9rem;
+}
+
+.card-stats {
+  margin-top: auto;
+  margin-bottom: 1rem;
+  border-top: 1px solid var(--line);
+  padding-top: 0.75rem;
+  color: var(--dim);
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.empty-state,
+.detail-empty {
+  border: 1px dashed var(--line-2);
+  border-radius: var(--radius);
+  padding: 3rem 1rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.detail-page {
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+.back-button {
+  margin-bottom: 1rem;
+}
+
+.detail-panel {
+  overflow: hidden;
+}
+
+.detail-hero {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 1.2rem;
+  align-items: stretch;
+  padding: 1rem;
+}
+
+.detail-visual {
+  min-height: 360px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background-position: center;
+  background-size: cover;
+}
+
+.detail-kicker {
+  margin: 0 0 0.65rem;
+  color: var(--teal);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.detail-hero h2 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.detail-hero p {
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  padding: 0.45rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.hazard-checkpoint {
+  margin: 0 1rem 1rem;
+  border: 1px solid rgba(255, 139, 123, 0.25);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 139, 123, 0.08);
+  padding: 1rem;
+}
+
+.hazard-checkpoint strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--danger);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.hazard-checkpoint p {
+  margin: 0;
+  color: #ffc4bb;
+  font-weight: 750;
+  line-height: 1.55;
+}
+
+.detail-body {
+  display: grid;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+}
+
+.result-story {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.7rem;
+}
+
+.story-card,
+.detail-section {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1rem;
+}
+
+.story-card h3,
+.detail-section h3 {
+  margin: 0 0 0.65rem;
+  color: var(--teal);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.story-card p,
+.detail-section li,
+.detail-section p {
+  color: var(--text);
+  line-height: 1.62;
+}
+
+.detail-section ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.detail-section ol {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: steps;
+}
+
+.detail-section ol li {
+  position: relative;
+  min-height: 3rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.035);
+  padding: 0.85rem 0.9rem 0.85rem 3.1rem;
+  counter-increment: steps;
+}
+
+.detail-section ol li::before {
+  content: counter(steps);
+  position: absolute;
+  left: 0.8rem;
+  top: 0.8rem;
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--teal-d));
+  color: #031f18;
+  font-weight: 950;
+}
+
+.science-explain {
+  border-left: 4px solid var(--teal);
+  background: rgba(62, 207, 170, 0.08);
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    width: calc(100% - 2rem);
+  }
+
+  .home-page,
+  .hero-panel,
+  .detail-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .home-page {
+    min-height: auto;
+    padding-block: 4rem 2rem;
+  }
+
+  .home-photo,
+  .home-photo img,
+  .detail-visual {
+    min-height: 300px;
+  }
+
+  .result-story {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar {
+    padding-inline: 1rem;
+  }
+
+  .nav-link:not(.nav-link--cta) {
+    display: none;
+  }
+
+  .home-copy h1 {
+    font-size: 3rem;
+  }
+
+  .home-photo,
+  .home-photo img,
+  .detail-visual {
+    min-height: 230px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header class="topbar" aria-label="Site navigation">
+    <a class="brand" href="#">
+      <span class="brand__icon" aria-hidden="true">EX</span>
+      <span class="brand__name">ExperiLab</span>
+    </a>
+    <nav class="topbar__right" aria-label="Main navigation">
+      <a class="nav-link" href="#">Home</a>
+      <a class="nav-link nav-link--cta" href="#experiments">Experiments</a>
+    </nav>
+  </header>
+
+  <main class="app-shell">
+    <section class="home-page" id="homePage" aria-label="Home page">
+      <span class="orb orb--one" aria-hidden="true"></span>
+      <span class="orb orb--two" aria-hidden="true"></span>
+      <div class="home-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Home science missions</p>
+        <h1>Turn your room into a science lab.</h1>
+        <p class="hero-copy">Choose a home experiment, follow a clear mission, and understand the science behind the effect.</p>
+        <div class="hero-actions">
+          <button class="primary-button" id="startButton" type="button">Explore experiments <span aria-hidden="true">→</span></button>
+          <span class="hero-hint">No account. No lab. Just curiosity.</span>
+        </div>
+      </div>
+      <div class="home-photo" aria-hidden="true">
+        <img src="assets/experiment-sheet.png" alt="">
+      </div>
+    </section>
+
+    <section class="experiments-page hidden" id="experimentsPage" aria-label="Experiment library">
+      <header class="hero-panel compact-panel">
+      <div class="brand-block">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Experiment library</p>
+        <h1>Choose a mission.</h1>
+      </div>
+
+      <div class="quick-start">
+        <label for="searchInput">Search experiments</label>
+        <input id="searchInput" type="search" placeholder="magnet, crystal, pressure...">
+      </div>
+
+      <section class="filter-group category-row" aria-labelledby="categoryLabel">
+        <h2 id="categoryLabel">Science area</h2>
+        <div class="segmented segmented--primary" id="categoryFilters"></div>
+      </section>
+
+      <section class="filter-group topic-row" id="topicFilterGroup" aria-labelledby="topicLabel">
+        <h2 id="topicLabel">Physics topic</h2>
+        <div class="segmented" id="topicFilters"></div>
+      </section>
+      </header>
+
+      <section class="library-panel" aria-label="Experiment list">
+      <header class="library-header">
+        <div>
+          <h2 id="resultCount">0 investigations ready</h2>
+        </div>
+        <button class="reset-button" id="resetFilters" type="button">Show all</button>
+      </header>
+
+      <div class="experiment-grid" id="experimentGrid"></div>
+      </section>
+    </section>
+
+    <section class="detail-page hidden" id="detailPage" aria-label="Selected experiment">
+      <button class="back-button" id="backToExperiments" type="button">← Back to experiments</button>
+      <article class="detail-panel" id="detailPanel">
+      <div class="detail-empty">
+        <p>Choose an experiment to see the steps.</p>
+      </div>
+      </article>
+    </section>
+  </main>
+
+  <template id="experimentCardTemplate">
+    <button class="experiment-card" type="button">
+      <span class="risk-band"></span>
+      <span class="preview-art" aria-hidden="true"></span>
+      <span class="card-meta"></span>
+      <strong class="card-title"></strong>
+      <span class="card-result"></span>
+      <span class="card-stats"></span>
+    </button>
+  </template>
+
+  <script>
+const experiments = [
+  {
+    id: "needle-compass",
+    title: "Magnetize a Floating Compass",
+    topic: "Magnetism",
+    difficulty: "Focused",
+    time: "15 min",
+    timeGroup: "Under 20 min",
+    materialsGroup: "Kitchen + desk",
+    risk: "Medium",
+    art: "art-magnet",
+    image: "assets/experiments/needle-compass.png",
+    result: "Make a tiny floating compass that turns by itself and points the same way again and again.",
+    hook: "A needle becomes a real direction finder.",
+    before: "A normal needle has no obvious power. It just sits there.",
+    during: "You rub it with a magnet, float it on water, and remove almost all friction.",
+    reveal: "The needle slowly turns and settles like it knows where north is.",
+    materials: ["Sewing needle", "Fridge magnet", "Small leaf or paper circle", "Bowl of water", "Tape"],
+    hazard: "The needle is sharp and easy to lose. Put it on tape when you are not using it, and do not test this near eyes, pets, or younger kids.",
+    steps: [
+      "Stroke the needle from center to tip with one pole of the magnet 40 times in the same direction.",
+      "Tape the needle flat onto a dry leaf or small paper circle.",
+      "Set it gently on still water and wait for it to stop spinning.",
+      "Rotate the bowl and watch whether the needle returns to the same direction."
+    ],
+    observe: ["Which end keeps pointing the same way?", "Does stroking the needle more times make it settle faster?", "What happens near metal objects?"],
+    why: "The magnet lines up tiny magnetic regions inside the steel needle. Once it floats with very little friction, Earth's magnetic field can twist it into alignment.",
+    variation: "Try remagnetizing the needle with the opposite stroke direction and compare which end points north."
+  },
+  {
+    id: "density-column",
+    title: "Stack Invisible Weight",
+    topic: "Density",
+    difficulty: "Starter",
+    time: "20 min",
+    timeGroup: "Under 20 min",
+    materialsGroup: "Kitchen",
+    risk: "Low",
+    art: "art-density",
+    image: "assets/experiments/density-column.png",
+    result: "Pour liquids into one glass and watch them stack into clean, colorful layers.",
+    hook: "A glass turns into a floating liquid tower.",
+    before: "Everything looks like it should mix into one mess.",
+    during: "You pour slowly from heaviest to lightest, giving each liquid a chance to settle.",
+    reveal: "The layers hold their shape like invisible shelves are separating them.",
+    materials: ["Clear glass", "Honey or syrup", "Dish soap", "Water", "Cooking oil", "Food coloring if available"],
+    hazard: "This is slippery if spilled. Keep the glass away from the table edge and wipe oil immediately before anyone walks through it.",
+    steps: [
+      "Pour syrup slowly into the glass until it covers the bottom.",
+      "Tilt the glass and add dish soap down the side.",
+      "Color water if you have food coloring, then pour it slowly over the back of a spoon.",
+      "Add cooking oil last and wait two minutes for the layers to sharpen."
+    ],
+    observe: ["Which liquid sinks?", "Which liquid forms the cleanest boundary?", "What happens if you drop a tiny piece of paper or grape skin?"],
+    why: "Density is mass packed into volume. Heavier liquids for the same volume sink below lighter liquids, and oil also avoids mixing with water because its molecules do not bond well with water.",
+    variation: "Dissolve salt into the water and repeat. The water layer should shift because its density changes."
+  },
+  {
+    id: "salt-crystal-lab",
+    title: "Grow Salt Crystals on a String",
+    topic: "Crystals",
+    difficulty: "Focused",
+    time: "2 days",
+    timeGroup: "Multi-day",
+    materialsGroup: "Kitchen",
+    risk: "Medium",
+    art: "art-crystal",
+    image: "assets/experiments/salt-crystal-lab.png",
+    result: "Leave salt water alone and come back to sharp little crystals growing on a string.",
+    hook: "Plain salt water grows rock-like shapes.",
+    before: "The jar looks like boring salty water.",
+    during: "Water slowly leaves, and the salt has to rebuild itself somewhere.",
+    reveal: "Tiny crystal edges appear on the string, like the liquid secretly built them.",
+    materials: ["Table salt", "Warm water", "Clear jar", "String", "Pencil", "Spoon"],
+    hazard: "Warm water can burn if rushed. Use water that is hot enough to dissolve salt, not boiling, and keep the jar stable while it cools.",
+    steps: [
+      "Stir salt into warm water until no more dissolves and grains stay at the bottom.",
+      "Tie string to a pencil and rest the pencil across the jar so the string hangs into the liquid.",
+      "Place the jar somewhere it will not be bumped.",
+      "Check the string over the next two days without stirring."
+    ],
+    observe: ["Where do the first crystals form?", "Are the crystal edges square, jagged, or needle-like?", "Does a cooler spot grow crystals differently?"],
+    why: "Warm water can hold more dissolved salt. As water evaporates and cools, excess salt leaves the solution and locks into repeating crystal patterns.",
+    variation: "Run two jars: one with plain salt water and one with a tiny pinch of extra salt grains on the string as seed crystals."
+  },
+  {
+    id: "static-paper-storm",
+    title: "Command a Paper Storm",
+    topic: "Electricity",
+    difficulty: "Starter",
+    time: "10 min",
+    timeGroup: "Under 20 min",
+    materialsGroup: "Desk",
+    risk: "Low",
+    art: "art-static",
+    image: "assets/experiments/static-paper-storm.png",
+    result: "Charge a balloon or comb and make bits of paper jump up without touching them.",
+    hook: "Paper jumps toward your hand like magic.",
+    before: "The paper pieces are still and ordinary.",
+    during: "Rubbing the balloon or comb builds up electric charge.",
+    reveal: "The paper lifts, shakes, and sticks before falling back down.",
+    materials: ["Balloon or plastic comb", "Wool sweater or dry hair", "Tiny paper pieces", "Dry table"],
+    hazard: "Keep the charged object away from electronics and screens. Static shocks are small, but electronics do not enjoy surprise charges.",
+    steps: [
+      "Tear paper into pieces smaller than rice grains.",
+      "Rub a balloon or comb against wool or dry hair for 20 seconds.",
+      "Hold it above the paper without touching.",
+      "Move the object slowly and map the distance where the paper starts jumping."
+    ],
+    observe: ["How far away can the object still attract paper?", "Does humidity change the result?", "Do larger paper pieces jump less?"],
+    why: "Rubbing moves electrons from one material to another. The charged object pulls opposite charges inside the paper toward it, creating attraction.",
+    variation: "Compare balloon, comb, plastic wrap, and a metal spoon. The difference will expose which materials hold static charge."
+  },
+  {
+    id: "water-lens",
+    title: "Build a Water Lens",
+    topic: "Light",
+    difficulty: "Starter",
+    time: "15 min",
+    timeGroup: "Under 20 min",
+    materialsGroup: "Kitchen + desk",
+    risk: "Low",
+    art: "art-light",
+    image: "assets/experiments/water-lens.png",
+    result: "Turn one drop of water into a lens that makes printed words look bigger.",
+    hook: "A water drop becomes a magnifying glass.",
+    before: "A clear drop looks too simple to do anything useful.",
+    during: "You shape the drop into a tiny dome above printed text.",
+    reveal: "Letters swell and sharpen when the drop is at the right distance.",
+    materials: ["Clear plastic wrap", "Small cup", "Rubber band", "Water", "Printed text"],
+    hazard: "Do not use this to focus sunlight. Concentrated sunlight can heat surfaces quickly and can injure eyes.",
+    steps: [
+      "Stretch plastic wrap over a cup and secure it with a rubber band.",
+      "Place a few drops of water in the center so they form a dome.",
+      "Hold printed text under the cup and move it slowly closer or farther.",
+      "Record the distance where the letters look largest and sharpest."
+    ],
+    observe: ["At what height does the text become sharp?", "Does a bigger drop magnify more?", "What happens if the water spreads flat?"],
+    why: "A curved water surface slows and bends light rays. When the rays bend toward your eye in the right way, small text appears larger.",
+    variation: "Try different drop sizes and sketch how the sharp viewing distance changes."
+  },
+  {
+    id: "bottle-lung",
+    title: "Make a Bottle Lung",
+    topic: "Pressure",
+    difficulty: "Advanced",
+    time: "30 min",
+    timeGroup: "20-40 min",
+    materialsGroup: "Kitchen + desk",
+    risk: "Medium",
+    art: "art-pressure",
+    image: "assets/experiments/bottle-lung.png",
+    result: "Build a bottle model where a balloon inflates when you pull on the bottom.",
+    hook: "A bottle starts breathing.",
+    before: "A balloon inside a bottle looks trapped and useless.",
+    during: "You pull the bottom membrane and change the air pressure inside.",
+    reveal: "The balloon inflates even though you never blow into it.",
+    materials: ["Plastic bottle", "Two balloons", "Straw", "Tape", "Scissors", "Plastic wrap"],
+    hazard: "Cut plastic can leave sharp edges. Cut slowly, tape the cut rim, and stop if the bottle cracks into jagged pieces.",
+    steps: [
+      "Cut the bottom off a plastic bottle and tape the rim smooth.",
+      "Attach one balloon to the end of a straw and seal it with tape.",
+      "Feed the straw through the bottle opening so the balloon hangs inside.",
+      "Stretch plastic wrap or a cut balloon over the open bottom as a flexible diaphragm.",
+      "Pull the bottom membrane down and watch the inside balloon."
+    ],
+    observe: ["What happens when the bottom membrane moves down?", "What happens when it moves up?", "Where could air leak and ruin the model?"],
+    why: "Pulling the membrane down increases the bottle's internal volume and lowers pressure. Outside air moves through the straw to equalize pressure, inflating the balloon.",
+    variation: "Make tiny air leaks with loose tape and compare how the model fails."
+  },
+  {
+    id: "red-cabbage-code",
+    title: "Decode Acids with Cabbage",
+    topic: "Chemistry",
+    difficulty: "Focused",
+    time: "35 min",
+    timeGroup: "20-40 min",
+    materialsGroup: "Kitchen",
+    risk: "Medium",
+    art: "art-chemistry",
+    image: "assets/experiments/red-cabbage-code.png",
+    result: "Make purple cabbage water change color when it touches acids and bases.",
+    hook: "Kitchen liquids reveal hidden chemistry.",
+    before: "The purple liquid looks like colored water.",
+    during: "You add safe household liquids one at a time.",
+    reveal: "The color flips pink, blue, or green depending on what is inside the cup.",
+    materials: ["Red cabbage", "Warm water", "Clear cups", "Vinegar", "Baking soda", "Lemon juice", "Soap water"],
+    hazard: "Never mix random cleaners. Test only food items, baking soda, and plain soap water. Do not taste anything after it enters the experiment cups.",
+    steps: [
+      "Tear cabbage leaves into a cup and cover them with warm water.",
+      "Wait 15 minutes until the water turns purple, then pour the liquid into clear cups.",
+      "Add a spoonful of vinegar to one cup and baking soda solution to another.",
+      "Test lemon juice and soap water separately, using clean spoons."
+    ],
+    observe: ["Which liquids turn the indicator pink?", "Which turn it blue or green?", "Does adding baking soda reverse vinegar's color change?"],
+    why: "Cabbage contains anthocyanins, pigments whose shapes change in acidic or basic conditions. Shape changes alter which wavelengths of light they absorb.",
+    variation: "Create a color scale from lemon juice to baking soda solution and rank unknown safe kitchen liquids."
+  },
+  {
+    id: "paper-bridge",
+    title: "Engineer a Paper Bridge",
+    topic: "Engineering",
+    difficulty: "Starter",
+    time: "20 min",
+    timeGroup: "Under 20 min",
+    materialsGroup: "Desk",
+    risk: "Low",
+    art: "art-engineering",
+    image: "assets/experiments/paper-bridge.png",
+    result: "Fold one sheet of paper so it holds a surprising stack of coins.",
+    hook: "Weak paper turns into a small bridge.",
+    before: "A flat sheet collapses almost immediately.",
+    during: "You fold, roll, and shape it so the paper fights bending.",
+    reveal: "The same paper suddenly holds much more weight.",
+    materials: ["Paper", "Two books", "Coins", "Tape", "Ruler"],
+    hazard: "Stacks of coins fall suddenly. Keep toes and glass objects away from the drop zone.",
+    steps: [
+      "Place two books 15 centimeters apart and lay a flat sheet of paper across them.",
+      "Add coins one at a time until the bridge collapses.",
+      "Fold a new sheet into a zigzag accordion and test again.",
+      "Try a rolled tube bridge and compare the maximum coin count."
+    ],
+    observe: ["Which shape carries the most coins?", "Where does the bridge fail first?", "Does a longer span change the winning design?"],
+    why: "Folds move material away from the center line, increasing stiffness. Engineers use shape, not just material strength, to fight bending.",
+    variation: "Limit yourself to one sheet and 20 centimeters of tape, then design the strongest bridge possible."
+  },
+  {
+    id: "pepper-force-field",
+    title: "Break Water's Force Field",
+    topic: "Chemistry",
+    difficulty: "Starter",
+    time: "8 min",
+    timeGroup: "Under 20 min",
+    materialsGroup: "Kitchen",
+    risk: "Low",
+    art: "art-chemistry",
+    image: "assets/experiments/pepper-force-field.png",
+    result: "Touch soapy water once and watch pepper race away from the center.",
+    hook: "Pepper shoots across the water.",
+    before: "Pepper floats calmly on the surface.",
+    during: "A tiny touch of soap breaks the surface tension pattern.",
+    reveal: "The pepper rushes outward in a fast ring.",
+    materials: ["Bowl", "Water", "Ground pepper", "Dish soap", "Cotton swab"],
+    hazard: "Soap in eyes hurts fast. Keep hands away from your face until you wash them.",
+    steps: [
+      "Fill a bowl with still water.",
+      "Sprinkle a thin layer of pepper over the surface.",
+      "Dip a cotton swab in dish soap.",
+      "Touch the soapy swab to the center of the water."
+    ],
+    observe: ["How quickly does the pepper move?", "Does more soap create a stronger effect?", "Can the same water repeat the trick?"],
+    why: "Water molecules pull on each other at the surface, creating surface tension. Soap disrupts that pull, so the stronger tension around the edges drags the pepper outward.",
+    variation: "Test cinnamon, tiny paper dots, or other floating particles and compare movement."
+  },
+  {
+    id: "vacuum-cup-lift",
+    title: "Lift Water with Air Pressure",
+    topic: "Pressure",
+    difficulty: "Focused",
+    time: "15 min",
+    timeGroup: "Under 20 min",
+    materialsGroup: "Kitchen",
+    risk: "Medium",
+    art: "art-pressure",
+    image: "assets/experiments/vacuum-cup-lift.png",
+    result: "Flip a full cup upside down and make a flat card hold the water in place.",
+    hook: "Water stays up when it should fall.",
+    before: "A full cup upside down sounds like an instant spill.",
+    during: "You seal the top with card and let air pressure do the holding.",
+    reveal: "The card sticks and the water stays inside the inverted cup.",
+    materials: ["Cup", "Water", "Flat cardboard square", "Sink or tray", "Towel"],
+    hazard: "Do this over a sink or tray. The failure mode is instant water everywhere, and slippery floors turn simple physics into a bad decision.",
+    steps: [
+      "Fill a cup almost to the top with water.",
+      "Place cardboard over the rim and press it flat with your palm.",
+      "Invert the cup over a sink while keeping the cardboard sealed.",
+      "Slowly remove your supporting hand and watch the cardboard."
+    ],
+    observe: ["How full must the cup be for the seal to work?", "What happens with thick cardboard versus thin card?", "How long does the seal last?"],
+    why: "Air pressure below the cardboard pushes upward harder than the water pushes downward when the seal is good. The cardboard also helps surface tension keep air from entering.",
+    variation: "Try different cup sizes and compare which one holds longest."
+  }
+];
+
+const filters = {
+  category: "All",
+  topic: "All",
+  search: ""
+};
+
+const categoryOptions = ["All", "Physics", "Chemistry"];
+const topicGroups = {
+  Physics: ["Magnetism", "Density", "Electricity", "Light", "Pressure", "Engineering"],
+  Chemistry: ["Chemistry", "Crystals"]
+};
+
+const experimentGrid = document.querySelector("#experimentGrid");
+const detailPanel = document.querySelector("#detailPanel");
+const resultCount = document.querySelector("#resultCount");
+const searchInput = document.querySelector("#searchInput");
+const resetFilters = document.querySelector("#resetFilters");
+const cardTemplate = document.querySelector("#experimentCardTemplate");
+const topicFilterGroup = document.querySelector("#topicFilterGroup");
+const topicLabel = document.querySelector("#topicLabel");
+const homePage = document.querySelector("#homePage");
+const experimentsPage = document.querySelector("#experimentsPage");
+const detailPage = document.querySelector("#detailPage");
+const startButton = document.querySelector("#startButton");
+const backToExperiments = document.querySelector("#backToExperiments");
+
+let selectedId = experiments[0].id;
+
+function renderFilterButtons(containerId, options, key) {
+  const container = document.querySelector(containerId);
+  container.innerHTML = "";
+
+  options.forEach((option) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "filter-button";
+    button.textContent = option;
+    button.setAttribute("aria-pressed", String(filters[key] === option));
+
+    if (filters[key] === option) {
+      button.classList.add("active");
+    }
+
+    button.addEventListener("click", () => {
+      filters[key] = option;
+
+      if (key === "category") {
+        filters.topic = "All";
+      }
+
+      render();
+    });
+
+    container.appendChild(button);
+  });
+}
+
+function getExperimentCategory(experiment) {
+  if (topicGroups.Physics.includes(experiment.topic)) {
+    return "Physics";
+  }
+
+  if (topicGroups.Chemistry.includes(experiment.topic)) {
+    return "Chemistry";
+  }
+
+  return "Other";
+}
+
+function renderTopicFilters() {
+  const showTopics = filters.category !== "All";
+  topicFilterGroup.classList.toggle("hidden", !showTopics);
+
+  if (!showTopics) {
+    filters.topic = "All";
+    return;
+  }
+
+  topicLabel.textContent = `${filters.category} topic`;
+  renderFilterButtons("#topicFilters", ["All", ...topicGroups[filters.category]], "topic");
+}
+
+function matchesFilters(experiment) {
+  const search = filters.search.trim().toLowerCase();
+  const searchTarget = [
+    experiment.title,
+    experiment.topic,
+    experiment.result,
+    experiment.hook,
+    experiment.materials.join(" "),
+    experiment.why
+  ].join(" ").toLowerCase();
+
+  return (filters.category === "All" || getExperimentCategory(experiment) === filters.category)
+    && (filters.topic === "All" || experiment.topic === filters.topic)
+    && (!search || searchTarget.includes(search));
+}
+
+function renderCards(filteredExperiments) {
+  experimentGrid.innerHTML = "";
+  resultCount.textContent = `${filteredExperiments.length} experiment${filteredExperiments.length === 1 ? "" : "s"}`;
+
+  if (!filteredExperiments.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty-state";
+    empty.textContent = "No matching experiments. Try a simpler search or show all.";
+    experimentGrid.appendChild(empty);
+    selectedId = null;
+    renderDetail(null);
+    return;
+  }
+
+  if (!filteredExperiments.some((experiment) => experiment.id === selectedId)) {
+    selectedId = filteredExperiments[0].id;
+  }
+
+  filteredExperiments.forEach((experiment) => {
+    const card = cardTemplate.content.firstElementChild.cloneNode(true);
+    card.dataset.id = experiment.id;
+    card.querySelector(".risk-band").classList.add(`risk-${experiment.risk.toLowerCase()}`);
+    const preview = card.querySelector(".preview-art");
+    preview.classList.add("has-photo");
+    preview.style.backgroundImage = `url("${experiment.image}")`;
+    card.querySelector(".card-meta").textContent = experiment.topic;
+    card.querySelector(".card-title").textContent = experiment.title;
+    card.querySelector(".card-result").textContent = experiment.hook;
+    card.querySelector(".card-stats").textContent = `${experiment.time} / ${experiment.risk} risk`;
+
+    if (experiment.id === selectedId) {
+      card.classList.add("active");
+    }
+
+    card.addEventListener("click", () => {
+      selectedId = experiment.id;
+      window.location.hash = `experiment/${experiment.id}`;
+    });
+
+    experimentGrid.appendChild(card);
+  });
+}
+
+function listMarkup(items, ordered = false) {
+  const list = document.createElement(ordered ? "ol" : "ul");
+
+  items.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    list.appendChild(li);
+  });
+
+  return list;
+}
+
+function renderDetail(experiment) {
+  detailPanel.innerHTML = "";
+
+  if (!experiment) {
+    const empty = document.createElement("div");
+    empty.className = "detail-empty";
+    empty.textContent = "Choose an experiment to see the steps.";
+    detailPanel.appendChild(empty);
+    return;
+  }
+
+  const hero = document.createElement("div");
+  hero.className = "detail-hero";
+  const imageStyle = `style="background-image: url('${experiment.image}')"`;
+  hero.innerHTML = `
+    <span class="detail-visual has-photo" ${imageStyle} aria-hidden="true"></span>
+    <div>
+      <p class="detail-kicker">You will make</p>
+      <h2>${experiment.title}</h2>
+      <p>${experiment.result}</p>
+    </div>
+    <div class="detail-tags">
+      <span class="tag">${experiment.time}</span>
+      <span class="tag">${experiment.risk} risk</span>
+    </div>
+  `;
+
+  const hazard = document.createElement("section");
+  hazard.className = "hazard-checkpoint";
+  hazard.innerHTML = `
+    <strong>Before you start</strong>
+    <p>${experiment.hazard}</p>
+  `;
+
+  const body = document.createElement("div");
+  body.className = "detail-body";
+
+  const story = document.createElement("section");
+  story.className = "result-story";
+  [
+    ["Before", experiment.before],
+    ["During", experiment.during],
+    ["Result", experiment.reveal]
+  ].forEach(([title, text]) => {
+    const item = document.createElement("article");
+    item.className = "story-card";
+    item.innerHTML = `<h3>${title}</h3><p>${text}</p>`;
+    story.appendChild(item);
+  });
+
+  const sections = [
+    ["You need", listMarkup(experiment.materials)],
+    ["Steps", listMarkup(experiment.steps, true)],
+    ["Why It Works", experiment.why],
+    ["Try changing one thing", experiment.variation]
+  ];
+
+  body.appendChild(story);
+
+  sections.forEach(([title, content]) => {
+    const section = document.createElement("section");
+    section.className = "detail-section";
+    const heading = document.createElement("h3");
+    heading.textContent = title;
+    section.appendChild(heading);
+
+    if (typeof content === "string") {
+      const p = document.createElement("p");
+      p.className = title === "Why It Works" ? "science-explain" : "";
+      p.textContent = content;
+      section.appendChild(p);
+    } else {
+      section.appendChild(content);
+    }
+
+    body.appendChild(section);
+  });
+
+  detailPanel.append(hero, hazard, body);
+}
+
+function render() {
+  renderFilterButtons("#categoryFilters", categoryOptions, "category");
+  renderTopicFilters();
+
+  const filteredExperiments = experiments.filter(matchesFilters);
+  renderCards(filteredExperiments);
+}
+
+searchInput.addEventListener("input", (event) => {
+  filters.search = event.target.value;
+  render();
+});
+
+resetFilters.addEventListener("click", () => {
+  filters.category = "All";
+  filters.topic = "All";
+  filters.search = "";
+  searchInput.value = "";
+  selectedId = experiments[0].id;
+  render();
+});
+
+function showPage(page) {
+  homePage.classList.toggle("hidden", page !== "home");
+  experimentsPage.classList.toggle("hidden", page !== "experiments");
+  detailPage.classList.toggle("hidden", page !== "detail");
+}
+
+function route() {
+  const hash = window.location.hash.replace(/^#/, "");
+
+  if (hash.startsWith("experiment/")) {
+    const id = hash.split("/")[1];
+    const experiment = experiments.find((item) => item.id === id) || experiments[0];
+    selectedId = experiment.id;
+    showPage("detail");
+    renderDetail(experiment);
+    window.scrollTo({ top: 0, behavior: "auto" });
+    return;
+  }
+
+  if (hash === "experiments") {
+    showPage("experiments");
+    render();
+    window.scrollTo({ top: 0, behavior: "auto" });
+    return;
+  }
+
+  showPage("home");
+}
+
+startButton.addEventListener("click", () => {
+  window.location.hash = "experiments";
+});
+
+backToExperiments.addEventListener("click", () => {
+  window.location.hash = "experiments";
+});
+
+window.addEventListener("hashchange", route);
+render();
+route();
+
+  </script>
+</body>
+</html>
+

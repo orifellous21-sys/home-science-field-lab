@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExperiLab Prototype</title>
+  <link rel="stylesheet" href="styles.css?v=20260512b">
+</head>
+<body>
+  <header class="topbar" aria-label="Site navigation">
+    <a class="brand" href="#">
+      <span class="brand__icon" aria-hidden="true">EX</span>
+      <span class="brand__name">ExperiLab</span>
+    </a>
+    <nav class="topbar__right" aria-label="Main navigation">
+      <a class="nav-link" href="#">Home</a>
+      <a class="nav-link nav-link--cta" href="#experiments">Experiments</a>
+    </nav>
+  </header>
+
+  <main class="app-shell">
+    <section class="home-page" id="homePage" aria-label="Home page">
+      <span class="orb orb--one" aria-hidden="true"></span>
+      <span class="orb orb--two" aria-hidden="true"></span>
+      <div class="home-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Home science missions</p>
+        <h1>Turn your room into a science lab.</h1>
+        <p class="hero-copy">Choose a home experiment, follow a clear mission, and understand the science behind the effect.</p>
+        <div class="hero-actions">
+          <button class="primary-button" id="startButton" type="button">Explore experiments <span aria-hidden="true">→</span></button>
+          <span class="hero-hint">No account. No lab. Just curiosity.</span>
+        </div>
+      </div>
+      <div class="home-photo" aria-hidden="true">
+        <img src="assets/experiment-sheet.png" alt="">
+      </div>
+    </section>
+
+    <section class="experiments-page hidden" id="experimentsPage" aria-label="Experiment library">
+      <header class="hero-panel compact-panel">
+      <div class="brand-block">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> Experiment library</p>
+        <h1>Choose a mission.</h1>
+      </div>
+
+      <div class="quick-start">
+        <label for="searchInput">Search experiments</label>
+        <input id="searchInput" type="search" placeholder="magnet, crystal, pressure...">
+      </div>
+
+      <section class="filter-group category-row" aria-labelledby="categoryLabel">
+        <h2 id="categoryLabel">Science area</h2>
+        <div class="segmented segmented--primary" id="categoryFilters"></div>
+      </section>
+
+      <section class="filter-group topic-row" id="topicFilterGroup" aria-labelledby="topicLabel">
+        <h2 id="topicLabel">Physics topic</h2>
+        <div class="segmented" id="topicFilters"></div>
+      </section>
+      </header>
+
+      <section class="library-panel" aria-label="Experiment list">
+      <header class="library-header">
+        <div>
+          <h2 id="resultCount">0 investigations ready</h2>
+        </div>
+        <button class="reset-button" id="resetFilters" type="button">Show all</button>
+      </header>
+
+      <div class="experiment-grid" id="experimentGrid"></div>
+      </section>
+    </section>
+
+    <section class="detail-page hidden" id="detailPage" aria-label="Selected experiment">
+      <button class="back-button" id="backToExperiments" type="button">← Back to experiments</button>
+      <article class="detail-panel" id="detailPanel">
+      <div class="detail-empty">
+        <p>Choose an experiment to see the steps.</p>
+      </div>
+      </article>
+    </section>
+  </main>
+
+  <template id="experimentCardTemplate">
+    <button class="experiment-card" type="button">
+      <span class="risk-band"></span>
+      <span class="preview-art" aria-hidden="true"></span>
+      <span class="card-meta"></span>
+      <strong class="card-title"></strong>
+      <span class="card-result"></span>
+      <span class="card-stats"></span>
+    </button>
+  </template>
+
+  <script src="app.js?v=20260512b"></script>
+</body>
+</html>
