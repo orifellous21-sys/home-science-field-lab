@@ -48,9 +48,14 @@
         <input id="searchInput" type="search" placeholder="magnet, crystal, pressure...">
       </div>
 
+      <section class="filter-group department-row" aria-labelledby="departmentLabel">
+        <h2 id="departmentLabel">Department</h2>
+        <div class="segmented segmented--primary" id="departmentFilters"></div>
+      </section>
+
       <section class="filter-group category-row" aria-labelledby="categoryLabel">
         <h2 id="categoryLabel">Science area</h2>
-        <div class="segmented segmented--primary" id="categoryFilters"></div>
+        <div class="segmented" id="categoryFilters"></div>
       </section>
 
       <section class="filter-group topic-row" id="topicFilterGroup" aria-labelledby="topicLabel">
@@ -80,6 +85,24 @@
       </article>
     </section>
   </main>
+
+  <section class="adult-gate hidden" id="adultGate" role="dialog" aria-modal="true" aria-labelledby="adultGateTitle">
+    <div class="adult-gate__panel" id="adultGatePanel">
+      <p class="adult-gate__kicker" id="adultGateKicker">Adults only</p>
+      <h2 id="adultGateTitle">Adults only experiment</h2>
+      <p class="adult-gate__experiment" id="adultGateExperiment"></p>
+      <p class="adult-gate__message" id="adultGateMessage"></p>
+      <div class="adult-gate__rules" id="adultGateRules"></div>
+      <label class="adult-gate__confirm">
+        <input id="adultGateConfirm" type="checkbox">
+        <span>I understand this experiment is for adults only and requires safety goggles, supervision, and a controlled area.</span>
+      </label>
+      <div class="adult-gate__actions">
+        <button class="adult-gate__secondary" id="adultGateBack" type="button">Go back</button>
+        <button class="adult-gate__primary" id="adultGateAgree" type="button" disabled>Open experiment</button>
+      </div>
+    </div>
+  </section>
 
   <template id="experimentCardTemplate">
     <button class="experiment-card" type="button">

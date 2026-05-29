@@ -279,19 +279,176 @@ const experiments = [
     observe: ["How full must the cup be for the seal to work?", "What happens with thick cardboard versus thin card?", "How long does the seal last?"],
     why: "Air pressure below the cardboard pushes upward harder than the water pushes downward when the seal is good. The cardboard also helps surface tension keep air from entering.",
     variation: "Try different cup sizes and compare which one holds longest."
+  },
+  {
+    id: "whoosh-bottle-demo",
+    title: "The Whoosh Bottle",
+    department: "Adults / advanced",
+    topic: "Fire",
+    difficulty: "Adults only",
+    time: "10 min",
+    timeGroup: "Under 20 min",
+    materialsGroup: "Outdoor",
+    risk: "Red",
+    image: "assets/experiments/red-cabbage-code.png",
+    result: "A bottle turns invisible vapor into a split-second flame tunnel and a loud whoosh.",
+    hook: "A silent bottle suddenly fires like a tiny jet engine.",
+    before: "The bottle looks empty, which makes the reveal feel impossible.",
+    during: "Alcohol vapor, oxygen, and ignition line up for one fast burn.",
+    reveal: "A blue-yellow flame front races through the bottle and disappears almost instantly.",
+    safetyGear: ["Safety goggles", "Adult supervision", "Outdoor open space", "Long ignition tool", "Fire extinguisher nearby"],
+    materials: ["Large dry plastic bottle", "Small amount of rubbing alcohol", "Long BBQ lighter", "Open outdoor area"],
+    hazard: "Never use glass, never lean over the opening, and never repeat impulsively. This uses flammable vapor and must be treated as an adult-supervised fire demonstration.",
+    steps: [
+      "Set the dry plastic bottle upright in a clear outdoor demo zone.",
+      "Create a thin alcohol-vapor coating inside the bottle and remove any visible liquid before ignition.",
+      "Move everyone back, put goggles on, and keep faces away from the bottle mouth.",
+      "Ignite once from arm's length with a long lighter.",
+      "Watch the flame race through the vapor and wait for the bottle to cool before touching it."
+    ],
+    observe: ["The bottle can look empty while still holding flammable vapor.", "The flame travels through the vapor-air mixture.", "The sound is caused by hot gases expanding quickly."],
+    whatCouldGoWrong: "A person leaning over the mouth can be burned, and the wrong container can fail. Prevent this with plastic only, distance, goggles, one controlled ignition, and adult control of the lighter.",
+    why: "Alcohol vapor mixes with oxygen along the bottle walls. When ignited, the flame front rapidly consumes that vapor-air mixture, heating the gas and creating the whoosh.",
+    variation: "Compare liquid fuel versus vapor fuel using a diagram or slow-motion video instead of chasing a bigger flame."
+  },
+  {
+    id: "pressure-bag-pop",
+    title: "The Exploding Pressure Bag",
+    department: "Adults / advanced",
+    topic: "Pressure",
+    difficulty: "Caution",
+    time: "12 min",
+    timeGroup: "Under 20 min",
+    materialsGroup: "Kitchen + outdoor",
+    risk: "Yellow",
+    image: "assets/experiments/vacuum-cup-lift.png",
+    result: "A sealed bag inflates by itself until pressure wins and the bag pops.",
+    hook: "A quiet reaction turns into a sudden bang.",
+    before: "The bag starts flat and harmless-looking.",
+    during: "Carbon dioxide gas forms faster than it can escape.",
+    reveal: "The bag tightens, swells, and bursts with a loud pop.",
+    safetyGear: ["Safety goggles", "Large sink or outdoor ground", "Six-foot step-back zone", "Towel"],
+    materials: ["Zip-seal bag", "Vinegar", "Baking soda", "Paper towel"],
+    hazard: "The pop can splash vinegar into eyes. Goggles and distance are the main safety controls.",
+    steps: [
+      "Pour vinegar into the bag and keep the opening upright.",
+      "Wrap baking soda in a paper towel packet to delay the reaction.",
+      "Drop the packet in, seal the bag fast, and place it flat in a sink or outside.",
+      "Step back and watch the bag inflate tighter and tighter.",
+      "After the pop, study the splash pattern and where the plastic failed."
+    ],
+    observe: ["How long the delay lasts before gas builds up.", "Where the bag stretches first.", "Whether the zipper or side seam fails."],
+    whatCouldGoWrong: "The bag can burst sideways and splash someone. Prevent it with goggles, a clear splash zone, and by never holding the bag while it inflates.",
+    why: "Vinegar and baking soda produce carbon dioxide gas. Inside a sealed bag, that gas raises pressure until the plastic or zipper gives way.",
+    variation: "Try changing only the bag size or the amount of trapped air and compare how the failure changes."
+  },
+  {
+    id: "grape-plasma-viewer",
+    title: "Microwave Grape Plasma",
+    department: "Adults / advanced",
+    topic: "Plasma",
+    difficulty: "Adults only",
+    time: "5 min",
+    timeGroup: "Under 20 min",
+    materialsGroup: "Kitchen appliance",
+    risk: "Red",
+    image: "assets/experiments/static-paper-storm.png",
+    result: "A tiny glowing plasma flare appears where microwave energy concentrates.",
+    hook: "A grape briefly creates the fourth state of matter.",
+    before: "A grape looks too ordinary to make a glowing arc.",
+    during: "Microwave energy concentrates near a tiny contact point.",
+    reveal: "A bright spark or glow appears for a moment, then disappears.",
+    safetyGear: ["Safety goggles", "Adult supervision", "Microwave-safe plate", "No repeated runs", "Fire-safe appliance area"],
+    materials: ["Microwave", "Fresh grape sample", "Knife", "Plain plate"],
+    hazard: "This can damage a microwave, scorch food, or start smoke. It is an adult-only appliance demonstration, not a repeat-until-it-works challenge.",
+    steps: [
+      "Prepare the grape sample and place it on a plain microwave-safe plate.",
+      "Close the microwave and have everyone watch through the door.",
+      "Run one very short burst and look for the bright arc or glow.",
+      "Stop as soon as a glow appears, smoke appears, or the sample darkens.",
+      "Let the plate sit before handling it, then compare the scorch mark with the glow location."
+    ],
+    observe: ["The glow appears near a small bridge or gap.", "The effect is brief and unpredictable.", "The microwave itself is part of the risk."],
+    whatCouldGoWrong: "The microwave can be damaged, smoke can form, or hot material can ignite. Prevent this by using only a short supervised run and stopping immediately at the first sign of heat damage.",
+    why: "Microwave fields can concentrate energy in a tiny region, heating ions and vapor until a small plasma forms.",
+    variation: "Use slow-motion video analysis instead of trying different foods."
+  },
+  {
+    id: "carbon-sugar-snake",
+    title: "The Carbon Sugar Snake",
+    department: "Adults / advanced",
+    topic: "Fire",
+    difficulty: "Adults only",
+    time: "20 min",
+    timeGroup: "Under 20 min",
+    materialsGroup: "Outdoor",
+    risk: "Red",
+    image: "assets/experiments/salt-crystal-lab.png",
+    result: "A black carbon foam snake grows upward from a burning mound.",
+    hook: "A tiny pile turns into a crawling carbon tower.",
+    before: "The powder looks like plain sugar and baking soda.",
+    during: "Heat breaks down the mixture while gas pushes through soft carbon.",
+    reveal: "A black spongy column expands, curls, and rises out of the sand.",
+    safetyGear: ["Safety goggles", "Heatproof tray", "Outdoor space", "Adult supervision", "Water or extinguisher nearby"],
+    materials: ["Sand", "Sugar", "Baking soda", "Small flame source", "Fireproof tray"],
+    hazard: "This uses sustained fire and leaves hot residue. Keep it outdoors, keep viewers back, and let everything cool before touching it.",
+    steps: [
+      "Build a sand mound in the center of a fireproof tray.",
+      "Place the sugar-baking soda mixture into a small crater in the mound.",
+      "Ignite the heat source around the crater and leave the tray alone.",
+      "Watch the first black bubble form, then track how the snake pushes upward.",
+      "After the flame is out, wait for full cooldown before breaking open the carbon foam."
+    ],
+    observe: ["The growth is slow but dramatic.", "The black material is carbon-rich foam.", "The shape depends on heat and gas release."],
+    whatCouldGoWrong: "The tray can stay hot, fuel can flare, and residue can burn skin. Prevent it with a heatproof setup, distance, adult control of ignition, and full cooldown.",
+    why: "Heat decomposes sugar into carbon-rich material while baking soda releases gas. The gas expands through the soft hot carbon, making it grow.",
+    variation: "Film a time-lapse and predict where the foam will curl next."
+  },
+  {
+    id: "green-flame-lab",
+    title: "The Green Flame",
+    department: "Adults / advanced",
+    topic: "Chemistry",
+    difficulty: "Adults only",
+    time: "10 min",
+    timeGroup: "Under 20 min",
+    materialsGroup: "Pharmacy + outdoor",
+    risk: "Red",
+    image: "assets/experiments/red-cabbage-code.png",
+    result: "A normal flame shifts into a brilliant green glow.",
+    hook: "Fire changes color because atoms are giving off light.",
+    before: "The flame looks ordinary.",
+    during: "A boron-containing material is heated in the flame.",
+    reveal: "The flame glows green as excited atoms release energy as light.",
+    safetyGear: ["Safety goggles", "Outdoor or ventilated fire-safe area", "Adult supervision", "Heatproof bowl", "Fire extinguisher nearby"],
+    materials: ["Boric acid source", "Small amount of rubbing alcohol", "Fireproof metal or ceramic bowl"],
+    hazard: "This involves open flame and flammable liquid. Never add fuel to an active flame and keep the demonstration small and controlled.",
+    steps: [
+      "Set the heatproof bowl in a clear outdoor or ventilated fire-safe zone.",
+      "Prepare a small flame-color sample in the bowl.",
+      "Dim the surrounding light slightly so the color is easier to see.",
+      "Ignite once and watch the flame shift from ordinary orange-blue into green.",
+      "Let the flame burn out naturally and wait before handling the bowl."
+    ],
+    observe: ["The color is strongest in the hotter part of the flame.", "The green color is evidence of excited atoms.", "The container remains hot after the flame is gone."],
+    whatCouldGoWrong: "Adding fuel after ignition can cause a flash fire. Prevent it with a small setup, no refueling, goggles, and adult control of ignition.",
+    why: "Heat excites electrons in boron atoms. When those electrons drop back down, they release energy as green light.",
+    variation: "Compare this with a spectroscope page that shows element colors without flame."
   }
 ];
 
 const filters = {
+  department: "All",
   category: "All",
   topic: "All",
   search: ""
 };
 
+const departmentOptions = ["All", "Kids under 10", "Adults / advanced"];
 const categoryOptions = ["All", "Physics", "Chemistry"];
 const topicGroups = {
-  Physics: ["Magnetism", "Density", "Electricity", "Light", "Pressure", "Engineering"],
-  Chemistry: ["Chemistry", "Crystals"]
+  Physics: ["Magnetism", "Density", "Electricity", "Light", "Pressure", "Engineering", "Plasma"],
+  Chemistry: ["Chemistry", "Crystals", "Fire"]
 };
 
 const experimentGrid = document.querySelector("#experimentGrid");
@@ -307,6 +464,15 @@ const experimentsPage = document.querySelector("#experimentsPage");
 const detailPage = document.querySelector("#detailPage");
 const startButton = document.querySelector("#startButton");
 const backToExperiments = document.querySelector("#backToExperiments");
+const adultGate = document.querySelector("#adultGate");
+const adultGatePanel = document.querySelector("#adultGatePanel");
+const adultGateKicker = document.querySelector("#adultGateKicker");
+const adultGateExperiment = document.querySelector("#adultGateExperiment");
+const adultGateMessage = document.querySelector("#adultGateMessage");
+const adultGateRules = document.querySelector("#adultGateRules");
+const adultGateConfirm = document.querySelector("#adultGateConfirm");
+const adultGateAgree = document.querySelector("#adultGateAgree");
+const adultGateBack = document.querySelector("#adultGateBack");
 
 let selectedId = experiments[0].id;
 
@@ -328,7 +494,8 @@ function renderFilterButtons(containerId, options, key) {
     button.addEventListener("click", () => {
       filters[key] = option;
 
-      if (key === "category") {
+      if (key === "department" || key === "category") {
+        filters.category = key === "department" ? "All" : filters.category;
         filters.topic = "All";
       }
 
@@ -349,6 +516,10 @@ function getExperimentCategory(experiment) {
   }
 
   return "Other";
+}
+
+function getExperimentDepartment(experiment) {
+  return experiment.department || "Kids under 10";
 }
 
 function renderTopicFilters() {
@@ -375,7 +546,8 @@ function matchesFilters(experiment) {
     experiment.why
   ].join(" ").toLowerCase();
 
-  return (filters.category === "All" || getExperimentCategory(experiment) === filters.category)
+  return (filters.department === "All" || getExperimentDepartment(experiment) === filters.department)
+    && (filters.category === "All" || getExperimentCategory(experiment) === filters.category)
     && (filters.topic === "All" || experiment.topic === filters.topic)
     && (!search || searchTarget.includes(search));
 }
@@ -408,7 +580,7 @@ function renderCards(filteredExperiments) {
     card.querySelector(".card-meta").textContent = experiment.topic;
     card.querySelector(".card-title").textContent = experiment.title;
     card.querySelector(".card-result").textContent = experiment.hook;
-    card.querySelector(".card-stats").textContent = `${experiment.time} / ${experiment.risk} risk`;
+    card.querySelector(".card-stats").textContent = `${safetyLabel(experiment.risk)} / ${experiment.time}`;
 
     if (experiment.id === selectedId) {
       card.classList.add("active");
@@ -458,15 +630,8 @@ function renderDetail(experiment) {
     </div>
     <div class="detail-tags">
       <span class="tag">${experiment.time}</span>
-      <span class="tag">${experiment.risk} risk</span>
+      <span class="tag tag-risk-${experiment.risk.toLowerCase()}">${safetyLabel(experiment.risk)}</span>
     </div>
-  `;
-
-  const hazard = document.createElement("section");
-  hazard.className = "hazard-checkpoint";
-  hazard.innerHTML = `
-    <strong>Before you start</strong>
-    <p>${experiment.hazard}</p>
   `;
 
   const body = document.createElement("div");
@@ -486,8 +651,12 @@ function renderDetail(experiment) {
   });
 
   const sections = [
+    ...(experiment.safetyGear ? [["Mandatory gear", listMarkup(experiment.safetyGear)]] : []),
     ["You need", listMarkup(experiment.materials)],
-    ["Steps", listMarkup(experiment.steps, true)],
+    [getExperimentDepartment(experiment) === "Adults / advanced" ? "Action flow" : "Steps", listMarkup(experiment.steps, true)],
+    ...(experiment.observe ? [["What to watch for", listMarkup(experiment.observe)]] : []),
+    ...(experiment.whatCouldGoWrong ? [["What could go wrong?", experiment.whatCouldGoWrong]] : []),
+    ...(getExperimentDepartment(experiment) === "Adults / advanced" ? [["Disclaimer", "These experiments are for educational and entertainment purposes. Execution is strictly at the user's own risk. Follow all listed safety guidelines, use adult judgment, and stop if the setup is not controlled."]] : []),
     ["Why It Works", experiment.why],
     ["Try changing one thing", experiment.variation]
   ];
@@ -513,10 +682,97 @@ function renderDetail(experiment) {
     body.appendChild(section);
   });
 
-  detailPanel.append(hero, hazard, body);
+  const detailParts = [hero];
+
+  if (getExperimentDepartment(experiment) !== "Kids under 10" && experiment.hazard) {
+    const hazard = document.createElement("section");
+    hazard.className = "hazard-checkpoint";
+    hazard.innerHTML = `
+      <strong>Before you start</strong>
+      <p>${experiment.hazard}</p>
+    `;
+    detailParts.push(hazard);
+  }
+
+  detailParts.push(body);
+  detailPanel.append(...detailParts);
+}
+
+function safetyLabel(risk) {
+  if (risk === "Red") {
+    return "Red - supervision + protection";
+  }
+
+  if (risk === "Yellow") {
+    return "Yellow - caution required";
+  }
+
+  if (risk === "Green" || risk === "Low") {
+    return "Green - low risk";
+  }
+
+  return `${risk} risk`;
+}
+
+function requiresAdultGate(experiment) {
+  return getExperimentDepartment(experiment) === "Adults / advanced";
+}
+
+function adultGateCopy(experiment) {
+  const red = experiment.risk === "Red";
+
+  return {
+    panelClass: red ? "risk-red" : "risk-yellow",
+    kicker: red ? "Adults only - red tier" : "Adults only - caution tier",
+    message: red
+      ? `${experiment.title} involves fire, plasma, heat, or fast energy release. This is not for kids, solo testing, or improvising.`
+      : `${experiment.title} can pop, splash, or fail suddenly. Read this first and keep control of the setup.`,
+    rules: red
+      ? [
+        "Adult supervision is required before the action flow starts.",
+        "Safety goggles are mandatory.",
+        "Use a controlled outdoor or fire-safe area.",
+        "Do not chase a bigger reaction or change materials casually."
+      ]
+      : [
+        "Safety goggles are mandatory.",
+        "Use a large sink, tray, or outdoor ground.",
+        "Keep faces and hands out of the splash zone.",
+        "Step back before the reaction reaches its peak."
+      ]
+  };
+}
+
+function showAdultGate(experiment) {
+  const copy = adultGateCopy(experiment);
+  adultGatePanel.classList.remove("risk-red", "risk-yellow");
+  adultGatePanel.classList.add(copy.panelClass);
+  adultGateKicker.textContent = copy.kicker;
+  adultGateExperiment.textContent = experiment.title;
+  adultGateMessage.textContent = copy.message;
+  adultGateRules.innerHTML = "";
+  adultGateConfirm.checked = false;
+  adultGateAgree.disabled = true;
+
+  copy.rules.forEach((rule) => {
+    const item = document.createElement("div");
+    item.className = "adult-gate__rule";
+    item.textContent = rule;
+    adultGateRules.appendChild(item);
+  });
+
+  adultGate.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+  adultGateConfirm.focus();
+}
+
+function hideAdultGate() {
+  adultGate.classList.add("hidden");
+  document.body.classList.remove("modal-open");
 }
 
 function render() {
+  renderFilterButtons("#departmentFilters", departmentOptions, "department");
   renderFilterButtons("#categoryFilters", categoryOptions, "category");
   renderTopicFilters();
 
@@ -530,6 +786,7 @@ searchInput.addEventListener("input", (event) => {
 });
 
 resetFilters.addEventListener("click", () => {
+  filters.department = "All";
   filters.category = "All";
   filters.topic = "All";
   filters.search = "";
@@ -539,6 +796,7 @@ resetFilters.addEventListener("click", () => {
 });
 
 function showPage(page) {
+  hideAdultGate();
   homePage.classList.toggle("hidden", page !== "home");
   experimentsPage.classList.toggle("hidden", page !== "experiments");
   detailPage.classList.toggle("hidden", page !== "detail");
@@ -553,6 +811,11 @@ function route() {
     selectedId = experiment.id;
     showPage("detail");
     renderDetail(experiment);
+
+    if (requiresAdultGate(experiment)) {
+      showAdultGate(experiment);
+    }
+
     window.scrollTo({ top: 0, behavior: "auto" });
     return;
   }
@@ -572,6 +835,18 @@ startButton.addEventListener("click", () => {
 });
 
 backToExperiments.addEventListener("click", () => {
+  window.location.hash = "experiments";
+});
+
+adultGateConfirm.addEventListener("change", () => {
+  adultGateAgree.disabled = !adultGateConfirm.checked;
+});
+
+adultGateAgree.addEventListener("click", () => {
+  hideAdultGate();
+});
+
+adultGateBack.addEventListener("click", () => {
   window.location.hash = "experiments";
 });
 
