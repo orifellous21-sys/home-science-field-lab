@@ -601,12 +601,11 @@ const filters = {
   search: ""
 };
 
-const departmentOptions = ["All", "Kids under 10", "Adults / advanced", "Robotics"];
-const categoryOptions = ["All", "Physics", "Chemistry", "Robotics"];
+const departmentOptions = ["All", "Kids under 10", "Adults / advanced"];
+const categoryOptions = ["All", "Physics", "Chemistry"];
 const topicGroups = {
   Physics: ["Magnetism", "Light", "Pressure", "Mechanics"],
-  Chemistry: ["Chemistry", "Crystals", "Fire"],
-  Robotics: ["Robot", "Car", "Plane"]
+  Chemistry: ["Chemistry", "Crystals", "Fire"]
 };
 const physicsTopicMap = {
   Magnetism: "Magnetism",
@@ -619,17 +618,21 @@ const physicsTopicMap = {
 };
 
 const experimentGrid = document.querySelector("#experimentGrid");
+const roboticsGrid = document.querySelector("#roboticsGrid");
 const detailPanel = document.querySelector("#detailPanel");
 const resultCount = document.querySelector("#resultCount");
 const searchInput = document.querySelector("#searchInput");
 const resetFilters = document.querySelector("#resetFilters");
 const cardTemplate = document.querySelector("#experimentCardTemplate");
+const roboticsCardTemplate = document.querySelector("#roboticsCardTemplate");
 const topicFilterGroup = document.querySelector("#topicFilterGroup");
 const topicLabel = document.querySelector("#topicLabel");
 const homePage = document.querySelector("#homePage");
 const experimentsPage = document.querySelector("#experimentsPage");
+const roboticsPage = document.querySelector("#roboticsPage");
 const detailPage = document.querySelector("#detailPage");
 const startButton = document.querySelector("#startButton");
+const roboticsButton = document.querySelector("#roboticsButton");
 const backToExperiments = document.querySelector("#backToExperiments");
 const adultGate = document.querySelector("#adultGate");
 const adultGatePanel = document.querySelector("#adultGatePanel");
@@ -642,6 +645,7 @@ const adultGateAgree = document.querySelector("#adultGateAgree");
 const adultGateBack = document.querySelector("#adultGateBack");
 
 let selectedId = experiments[0].id;
+let detailBackTarget = "experiments";
 
 function renderFilterButtons(containerId, options, key) {
   const container = document.querySelector(containerId);
@@ -682,7 +686,7 @@ function getExperimentCategory(experiment) {
     return "Chemistry";
   }
 
-  if (topicGroups.Robotics.includes(experiment.topic)) {
+  if (getExperimentDepartment(experiment) === "Robotics") {
     return "Robotics";
   }
 
@@ -715,6 +719,10 @@ function renderTopicFilters() {
 }
 
 function matchesFilters(experiment) {
+  if (getExperimentDepartment(experiment) === "Robotics") {
+    return false;
+  }
+
   const search = filters.search.trim().toLowerCase();
   const searchTarget = [
     experiment.title,
@@ -825,6 +833,45 @@ function stagesMarkup(stages) {
   });
 
   return wrap;
+}
+
+function roboticsProjects() {
+  return experiments.filter((experiment) => getExperimentDepartment(experiment) === "Robotics");
+}
+
+function renderRoboticsProjects() {
+  roboticsGrid.innerHTML = "";
+
+  roboticsProjects().forEach((project, index) => {
+    const card = roboticsCardTemplate.content.firstElementChild.cloneNode(true);
+    card.style.setProperty("--accent-step", index + 1);
+    card.querySelector(".robotics-card__type").textContent = project.topic;
+    card.querySelector(".robotics-card__time").textContent = project.time;
+    card.querySelector(".robotics-card__media").dataset.machine = project.topic;
+    card.querySelector("h2").textContent = project.title;
+    card.querySelector(".robotics-card__hook").textContent = project.hook;
+
+    const parts = card.querySelector(".robotics-card__parts");
+    parts.innerHTML = "<strong>Parts path</strong>";
+    project.parts.slice(0, 3).forEach((part) => {
+      const item = document.createElement("span");
+      item.textContent = `${part.name}: buy or salvage`;
+      parts.appendChild(item);
+    });
+
+    const stages = card.querySelector(".robotics-card__stages");
+    project.stages.forEach((stage, stageIndex) => {
+      const step = document.createElement("span");
+      step.textContent = `${stageIndex + 1}. ${stage.title.replace(/^Stage \d+ - /, "")}`;
+      stages.appendChild(step);
+    });
+
+    card.querySelector(".robotics-card__open").addEventListener("click", () => {
+      window.location.hash = `project/${project.id}`;
+    });
+
+    roboticsGrid.appendChild(card);
+  });
 }
 
 function renderDetail(experiment) {
@@ -1000,6 +1047,7 @@ function render() {
 
   const filteredExperiments = experiments.filter(matchesFilters);
   renderCards(filteredExperiments);
+  renderRoboticsProjects();
 }
 
 searchInput.addEventListener("input", (event) => {
@@ -1021,6 +1069,7 @@ function showPage(page) {
   hideAdultGate();
   homePage.classList.toggle("hidden", page !== "home");
   experimentsPage.classList.toggle("hidden", page !== "experiments");
+  roboticsPage.classList.toggle("hidden", page !== "robotics");
   detailPage.classList.toggle("hidden", page !== "detail");
 }
 
@@ -1030,7 +1079,16 @@ function route() {
   if (hash.startsWith("experiment/")) {
     const id = hash.split("/")[1];
     const experiment = experiments.find((item) => item.id === id) || experiments[0];
+
+    if (getExperimentDepartment(experiment) === "Robotics") {
+      window.location.hash = `project/${experiment.id}`;
+      return;
+    }
+
     selectedId = experiment.id;
+    detailBackTarget = "experiments";
+    detailPage.classList.remove("detail-page--robotics");
+    backToExperiments.textContent = "<- Back to experiments";
     showPage("detail");
     renderDetail(experiment);
 
@@ -1042,13 +1100,36 @@ function route() {
     return;
   }
 
+  if (hash.startsWith("project/")) {
+    const id = hash.split("/")[1];
+    const project = roboticsProjects().find((item) => item.id === id) || roboticsProjects()[0];
+    selectedId = project.id;
+    detailBackTarget = "robotics";
+    detailPage.classList.add("detail-page--robotics");
+    backToExperiments.textContent = "<- Back to robotics";
+    showPage("detail");
+    renderDetail(project);
+    window.scrollTo({ top: 0, behavior: "auto" });
+    return;
+  }
+
   if (hash === "experiments") {
+    detailPage.classList.remove("detail-page--robotics");
     showPage("experiments");
     render();
     window.scrollTo({ top: 0, behavior: "auto" });
     return;
   }
 
+  if (hash === "robotics") {
+    detailPage.classList.remove("detail-page--robotics");
+    showPage("robotics");
+    renderRoboticsProjects();
+    window.scrollTo({ top: 0, behavior: "auto" });
+    return;
+  }
+
+  detailPage.classList.remove("detail-page--robotics");
   showPage("home");
 }
 
@@ -1056,8 +1137,12 @@ startButton.addEventListener("click", () => {
   window.location.hash = "experiments";
 });
 
+roboticsButton.addEventListener("click", () => {
+  window.location.hash = "robotics";
+});
+
 backToExperiments.addEventListener("click", () => {
-  window.location.hash = "experiments";
+  window.location.hash = detailBackTarget;
 });
 
 adultGateConfirm.addEventListener("change", () => {

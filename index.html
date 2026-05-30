@@ -15,6 +15,7 @@
     <nav class="topbar__right" aria-label="Main navigation">
       <a class="nav-link" href="#">Home</a>
       <a class="nav-link nav-link--cta" href="#experiments">Experiments</a>
+      <a class="nav-link nav-link--robotics" href="#robotics">Robotics projects</a>
     </nav>
   </header>
 
@@ -28,6 +29,7 @@
         <p class="hero-copy">Choose a home experiment, follow a clear mission, and understand the science behind the effect.</p>
         <div class="hero-actions">
           <button class="primary-button" id="startButton" type="button">Explore experiments <span aria-hidden="true">→</span></button>
+          <button class="robotics-home-button" id="roboticsButton" type="button">Robotics projects <span aria-hidden="true">-&gt;</span></button>
           <span class="hero-hint">No account. No lab. Just curiosity.</span>
         </div>
       </div>
@@ -76,6 +78,23 @@
       </section>
     </section>
 
+    <section class="robotics-page hidden" id="roboticsPage" aria-label="Robotics projects">
+      <header class="robotics-hero">
+        <div>
+          <p class="robotics-kicker">Build lab</p>
+          <h1>Robotics projects</h1>
+          <p>Choose a machine, collect parts, and build it in stages. Every project shows what to buy and what you can salvage from broken toys or household parts.</p>
+        </div>
+        <div class="robotics-board" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </header>
+
+      <div class="robotics-grid" id="roboticsGrid"></div>
+    </section>
+
     <section class="detail-page hidden" id="detailPage" aria-label="Selected experiment">
       <button class="back-button" id="backToExperiments" type="button">← Back to experiments</button>
       <article class="detail-panel" id="detailPanel">
@@ -113,6 +132,23 @@
       <span class="card-result"></span>
       <span class="card-stats"></span>
     </button>
+  </template>
+
+  <template id="roboticsCardTemplate">
+    <article class="robotics-card">
+      <div class="robotics-card__top">
+        <span class="robotics-card__type"></span>
+        <span class="robotics-card__time"></span>
+      </div>
+      <div class="robotics-card__media" aria-hidden="true"></div>
+      <div class="robotics-card__body">
+        <h2></h2>
+        <p class="robotics-card__hook"></p>
+        <div class="robotics-card__parts"></div>
+        <div class="robotics-card__stages"></div>
+      </div>
+      <button class="robotics-card__open" type="button">Open full build</button>
+    </article>
   </template>
 
   <script src="app.js?v=20260512b"></script>

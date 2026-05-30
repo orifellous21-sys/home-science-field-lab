@@ -160,6 +160,13 @@ a {
   font-weight: 800;
 }
 
+.nav-link--robotics {
+  border: 1px solid rgba(255, 184, 77, 0.26);
+  background: rgba(255, 184, 77, 0.08);
+  color: #ffd28a;
+  font-weight: 850;
+}
+
 .app-shell {
   width: min(var(--max), calc(100% - 3rem));
   margin: 0 auto;
@@ -271,6 +278,7 @@ a {
 }
 
 .primary-button,
+.robotics-home-button,
 .back-button,
 .reset-button {
   border: 0;
@@ -292,6 +300,7 @@ a {
 }
 
 .primary-button:hover,
+.robotics-home-button:hover,
 .back-button:hover,
 .reset-button:hover {
   transform: translateY(-3px);
@@ -299,6 +308,26 @@ a {
 
 .primary-button:hover {
   box-shadow: 0 0 0 6px rgba(62, 207, 170, 0.14), 0 22px 56px rgba(62, 207, 170, 0.34);
+}
+
+.robotics-home-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 58px;
+  border: 1px solid rgba(255, 184, 77, 0.35);
+  padding: 1.05rem 1.8rem;
+  background:
+    linear-gradient(135deg, rgba(255, 184, 77, 0.18), rgba(120, 172, 255, 0.14)),
+    rgba(255, 255, 255, 0.035);
+  color: #ffe3b0;
+  font-size: 1rem;
+  box-shadow: 0 16px 46px rgba(255, 184, 77, 0.12);
+}
+
+.robotics-home-button:hover {
+  border-color: rgba(255, 184, 77, 0.6);
+  box-shadow: 0 0 0 6px rgba(255, 184, 77, 0.1), 0 22px 52px rgba(255, 184, 77, 0.18);
 }
 
 .hero-hint {
@@ -565,6 +594,270 @@ input[type="search"]:focus {
   padding: 3rem 1rem;
   color: var(--muted);
   text-align: center;
+}
+
+.robotics-page {
+  padding-top: 2.4rem;
+}
+
+.robotics-hero {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(300px, 0.7fr);
+  gap: clamp(1.4rem, 4vw, 3rem);
+  align-items: center;
+  margin-bottom: 1.2rem;
+  border: 1px solid rgba(255, 184, 77, 0.2);
+  border-radius: 6px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    radial-gradient(circle at 78% 18%, rgba(255, 184, 77, 0.18), transparent 32%),
+    linear-gradient(135deg, rgba(13, 21, 37, 0.96), rgba(6, 13, 26, 0.92));
+  background-size: 34px 34px, 34px 34px, auto, auto;
+  padding: clamp(1.35rem, 4vw, 2.4rem);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
+}
+
+.robotics-kicker {
+  display: inline-flex;
+  margin: 0 0 1rem;
+  border: 1px solid rgba(255, 184, 77, 0.35);
+  border-radius: 2px;
+  background: rgba(255, 184, 77, 0.12);
+  color: #ffd28a;
+  padding: 0.42rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.robotics-hero h1 {
+  margin: 0;
+  color: #f6f9ff;
+  font-size: clamp(2.8rem, 6vw, 5.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.robotics-hero p:not(.robotics-kicker) {
+  max-width: 62ch;
+  color: #c8d6f6;
+  line-height: 1.75;
+}
+
+.robotics-board {
+  position: relative;
+  min-height: 280px;
+  border: 1px solid rgba(120, 172, 255, 0.3);
+  border-radius: 4px;
+  background:
+    linear-gradient(135deg, rgba(120, 172, 255, 0.12), transparent 45%),
+    rgba(3, 8, 18, 0.7);
+}
+
+.robotics-board span {
+  position: absolute;
+  display: block;
+  border: 2px solid rgba(255, 184, 77, 0.72);
+  background: rgba(255, 184, 77, 0.08);
+}
+
+.robotics-board span:nth-child(1) {
+  width: 48%;
+  height: 34%;
+  left: 12%;
+  top: 14%;
+}
+
+.robotics-board span:nth-child(2) {
+  width: 34%;
+  height: 54%;
+  right: 13%;
+  bottom: 12%;
+  border-color: rgba(120, 172, 255, 0.76);
+  background: rgba(120, 172, 255, 0.08);
+}
+
+.robotics-board span:nth-child(3) {
+  width: 58%;
+  height: 2px;
+  left: 21%;
+  top: 58%;
+  border: 0;
+  background: #ffd28a;
+  box-shadow: 0 0 28px rgba(255, 184, 77, 0.48);
+  transform: rotate(-18deg);
+}
+
+.robotics-grid {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.robotics-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: stretch;
+  border: 1px solid rgba(120, 172, 255, 0.18);
+  border-left: 8px solid #ffb84d;
+  border-radius: 4px;
+  background:
+    linear-gradient(90deg, rgba(255, 184, 77, 0.08), transparent 36%),
+    rgba(255, 255, 255, 0.045);
+  padding: 1rem;
+}
+
+.robotics-card:nth-child(2) {
+  border-left-color: #78acff;
+}
+
+.robotics-card:nth-child(3) {
+  border-left-color: #9bf0d8;
+}
+
+.robotics-card__top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.robotics-card__type,
+.robotics-card__time {
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 2px;
+  padding: 0.42rem 0.55rem;
+  color: #ffd28a;
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.robotics-card__time {
+  color: #c7d7ff;
+}
+
+.robotics-card__media {
+  position: relative;
+  overflow: hidden;
+  min-height: 210px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 4px;
+  background:
+    linear-gradient(rgba(120, 172, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 172, 255, 0.12) 1px, transparent 1px),
+    radial-gradient(circle at 30% 45%, rgba(255, 184, 77, 0.22), transparent 12%),
+    radial-gradient(circle at 70% 60%, rgba(155, 240, 216, 0.16), transparent 16%),
+    #050b16;
+  background-size: 20px 20px, 20px 20px, auto, auto, auto;
+}
+
+.robotics-card__media::before {
+  content: attr(data-machine);
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  color: rgba(246, 249, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.robotics-card__media::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 14%;
+  top: 47%;
+  height: 32%;
+  border: 3px solid rgba(255, 184, 77, 0.76);
+  border-top-width: 10px;
+  border-radius: 10px 10px 4px 4px;
+  box-shadow:
+    -38px 36px 0 -20px #78acff,
+    38px 36px 0 -20px #78acff,
+    0 -48px 0 -24px rgba(155, 240, 216, 0.8);
+}
+
+.robotics-card__body {
+  min-width: 0;
+}
+
+.robotics-card h2 {
+  margin: 0;
+  color: #f6f9ff;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.robotics-card__hook {
+  margin: 0.75rem 0 1rem;
+  color: #c8d6f6;
+  line-height: 1.65;
+}
+
+.robotics-card__parts,
+.robotics-card__stages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+}
+
+.robotics-card__parts strong {
+  color: #ffd28a;
+}
+
+.robotics-card__parts span,
+.robotics-card__stages span {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.035);
+  color: #d8e3fb;
+  padding: 0.45rem 0.55rem;
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.robotics-card__stages span {
+  color: #9bf0d8;
+}
+
+.robotics-card__open {
+  align-self: end;
+  min-width: 128px;
+  border: 1px solid rgba(255, 184, 77, 0.42);
+  border-radius: 4px;
+  background: #ffb84d;
+  color: #1d1200;
+  padding: 0.9rem 1rem;
+  font-weight: 950;
+}
+
+.detail-page--robotics .detail-panel {
+  border-color: rgba(255, 184, 77, 0.24);
+  border-radius: 4px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    rgba(8, 14, 27, 0.92);
+  background-size: 28px 28px;
+}
+
+.detail-page--robotics .detail-kicker,
+.detail-page--robotics .detail-section h3 {
+  color: #ffd28a;
+}
+
+.detail-page--robotics .tag {
+  border-radius: 4px;
 }
 
 .detail-page {
@@ -1043,7 +1336,9 @@ input[type="search"]:focus {
 
   .home-page,
   .hero-panel,
-  .detail-hero {
+  .detail-hero,
+  .robotics-hero,
+  .robotics-card {
     grid-template-columns: 1fr;
   }
 
@@ -1070,6 +1365,10 @@ input[type="search"]:focus {
   .project-stage {
     grid-template-columns: 1fr;
   }
+
+  .robotics-card__open {
+    width: 100%;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1092,6 +1391,265 @@ input[type="search"]:focus {
   }
 }
 
+/* Light color experiment: remove this block to bring back the dark design. */
+:root {
+  --ink: #ffffff;
+  --ink-2: #f7f9ff;
+  --ink-3: #eef4ff;
+  --text: #142033;
+  --muted: #53657e;
+  --dim: #73819a;
+  --line: rgba(28, 47, 76, 0.13);
+  --line-2: rgba(28, 47, 76, 0.22);
+  --glass: rgba(255, 255, 255, 0.82);
+  --glass-2: #ffffff;
+  --teal: #11b89a;
+  --teal-d: #07957f;
+  --violet: #7659ff;
+  --amber: #f7a928;
+  --danger: #d64545;
+  --shadow: 0 24px 70px rgba(37, 55, 92, 0.16);
+}
+
+body {
+  color: var(--text);
+  background:
+    radial-gradient(ellipse 820px 520px at 8% -10%, rgba(17, 184, 154, 0.18), transparent 62%),
+    radial-gradient(ellipse 760px 520px at 94% 4%, rgba(118, 89, 255, 0.14), transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #f5f8ff 48%, #eef6ff 100%);
+}
+
+.topbar {
+  border-bottom-color: rgba(28, 47, 76, 0.1);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 12px 40px rgba(28, 47, 76, 0.08);
+}
+
+.brand__icon {
+  border-color: rgba(17, 184, 154, 0.28);
+  background: linear-gradient(135deg, rgba(17, 184, 154, 0.12), rgba(118, 89, 255, 0.1));
+  color: #078571;
+}
+
+.nav-link {
+  color: #51627d;
+}
+
+.nav-link:hover {
+  color: #142033;
+  background: rgba(20, 32, 51, 0.055);
+}
+
+.nav-link--cta {
+  background: rgba(17, 184, 154, 0.12);
+  color: #078571;
+}
+
+.nav-link--robotics {
+  background: rgba(247, 169, 40, 0.12);
+  color: #915f00;
+}
+
+.eyebrow {
+  border-color: rgba(17, 184, 154, 0.26);
+  background: rgba(17, 184, 154, 0.08);
+  color: #078571;
+}
+
+.hero-copy,
+.hero-hint {
+  color: #53657e;
+}
+
+.primary-button {
+  color: #ffffff;
+  box-shadow: 0 18px 40px rgba(17, 184, 154, 0.24);
+}
+
+.robotics-home-button {
+  border-color: rgba(247, 169, 40, 0.32);
+  background:
+    linear-gradient(135deg, rgba(247, 169, 40, 0.14), rgba(118, 89, 255, 0.1)),
+    #ffffff;
+  color: #674500;
+}
+
+.home-photo {
+  box-shadow: 0 28px 70px rgba(37, 55, 92, 0.12), 0 0 70px rgba(118, 89, 255, 0.08);
+}
+
+.home-photo::after {
+  background:
+    radial-gradient(ellipse at 55% 48%, transparent 58%, rgba(245, 248, 255, 0.55) 86%),
+    linear-gradient(180deg, transparent 58%, rgba(245, 248, 255, 0.68));
+}
+
+.hero-panel,
+.library-panel,
+.detail-panel {
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 24px 70px rgba(37, 55, 92, 0.12);
+}
+
+.hero-panel {
+  background:
+    radial-gradient(circle at 94% 12%, rgba(118, 89, 255, 0.08), transparent 28%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(245, 250, 255, 0.9));
+}
+
+label,
+.filter-group h2 {
+  color: #63728c;
+}
+
+input[type="search"] {
+  background: #ffffff;
+  color: #142033;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+input[type="search"]::placeholder {
+  color: #8b98ad;
+}
+
+input[type="search"]:focus {
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(17, 184, 154, 0.12);
+}
+
+.filter-button {
+  background: #ffffff;
+  color: #53657e;
+}
+
+.filter-button:hover {
+  background: #f6faff;
+  color: #142033;
+}
+
+.filter-button.active {
+  color: #ffffff;
+}
+
+.reset-button,
+.back-button {
+  background: #ffffff;
+  color: #142033;
+}
+
+.experiment-card {
+  background: #ffffff;
+  color: #142033;
+  box-shadow: 0 18px 40px rgba(37, 55, 92, 0.08);
+}
+
+.experiment-card:hover,
+.experiment-card.active {
+  background: #ffffff;
+  box-shadow: 0 24px 60px rgba(37, 55, 92, 0.16);
+}
+
+.card-meta {
+  background: rgba(17, 184, 154, 0.1);
+  color: #078571;
+}
+
+.card-result,
+.card-stats,
+.detail-hero p,
+.story-card p,
+.detail-section li,
+.detail-section p,
+.part-option p {
+  color: #53657e;
+}
+
+.tag,
+.part-option,
+.project-stage,
+.story-card,
+.detail-section {
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.result-story {
+  background: rgba(246, 250, 255, 0.86);
+}
+
+.science-explain {
+  background: rgba(17, 184, 154, 0.08);
+  color: #1d344c !important;
+}
+
+.hazard-checkpoint {
+  background: #fff1ee;
+}
+
+.hazard-checkpoint p {
+  color: #7b3030;
+}
+
+.robotics-hero {
+  border-color: rgba(118, 89, 255, 0.18);
+  background:
+    linear-gradient(rgba(118, 89, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(118, 89, 255, 0.07) 1px, transparent 1px),
+    radial-gradient(circle at 82% 18%, rgba(247, 169, 40, 0.18), transparent 34%),
+    linear-gradient(135deg, #ffffff, #f1f6ff);
+  box-shadow: 0 24px 70px rgba(37, 55, 92, 0.13);
+}
+
+.robotics-kicker {
+  color: #895b00;
+}
+
+.robotics-hero h1,
+.robotics-card h2 {
+  color: #142033;
+}
+
+.robotics-hero p:not(.robotics-kicker),
+.robotics-card__hook {
+  color: #53657e;
+}
+
+.robotics-board,
+.robotics-card__media {
+  background:
+    linear-gradient(rgba(118, 89, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(118, 89, 255, 0.1) 1px, transparent 1px),
+    #f7faff;
+}
+
+.robotics-card {
+  background:
+    linear-gradient(90deg, rgba(247, 169, 40, 0.09), transparent 40%),
+    #ffffff;
+  box-shadow: 0 18px 46px rgba(37, 55, 92, 0.1);
+}
+
+.robotics-card__type,
+.robotics-card__time,
+.robotics-card__parts span,
+.robotics-card__stages span {
+  background: #f7faff;
+  color: #4e5d76;
+}
+
+.robotics-card__parts strong,
+.robotics-card__stages span,
+.detail-page--robotics .detail-kicker,
+.detail-page--robotics .detail-section h3 {
+  color: #895b00;
+}
+
+.detail-page--robotics .detail-panel {
+  background:
+    linear-gradient(rgba(118, 89, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(118, 89, 255, 0.045) 1px, transparent 1px),
+    rgba(255, 255, 255, 0.92);
+}
+
   </style>
 </head>
 <body>
@@ -1103,6 +1661,7 @@ input[type="search"]:focus {
     <nav class="topbar__right" aria-label="Main navigation">
       <a class="nav-link" href="#">Home</a>
       <a class="nav-link nav-link--cta" href="#experiments">Experiments</a>
+      <a class="nav-link nav-link--robotics" href="#robotics">Robotics projects</a>
     </nav>
   </header>
 
@@ -1116,6 +1675,7 @@ input[type="search"]:focus {
         <p class="hero-copy">Choose a home experiment, follow a clear mission, and understand the science behind the effect.</p>
         <div class="hero-actions">
           <button class="primary-button" id="startButton" type="button">Explore experiments <span aria-hidden="true">→</span></button>
+          <button class="robotics-home-button" id="roboticsButton" type="button">Robotics projects <span aria-hidden="true">-&gt;</span></button>
           <span class="hero-hint">No account. No lab. Just curiosity.</span>
         </div>
       </div>
@@ -1164,6 +1724,23 @@ input[type="search"]:focus {
       </section>
     </section>
 
+    <section class="robotics-page hidden" id="roboticsPage" aria-label="Robotics projects">
+      <header class="robotics-hero">
+        <div>
+          <p class="robotics-kicker">Build lab</p>
+          <h1>Robotics projects</h1>
+          <p>Choose a machine, collect parts, and build it in stages. Every project shows what to buy and what you can salvage from broken toys or household parts.</p>
+        </div>
+        <div class="robotics-board" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </header>
+
+      <div class="robotics-grid" id="roboticsGrid"></div>
+    </section>
+
     <section class="detail-page hidden" id="detailPage" aria-label="Selected experiment">
       <button class="back-button" id="backToExperiments" type="button">← Back to experiments</button>
       <article class="detail-panel" id="detailPanel">
@@ -1201,6 +1778,23 @@ input[type="search"]:focus {
       <span class="card-result"></span>
       <span class="card-stats"></span>
     </button>
+  </template>
+
+  <template id="roboticsCardTemplate">
+    <article class="robotics-card">
+      <div class="robotics-card__top">
+        <span class="robotics-card__type"></span>
+        <span class="robotics-card__time"></span>
+      </div>
+      <div class="robotics-card__media" aria-hidden="true"></div>
+      <div class="robotics-card__body">
+        <h2></h2>
+        <p class="robotics-card__hook"></p>
+        <div class="robotics-card__parts"></div>
+        <div class="robotics-card__stages"></div>
+      </div>
+      <button class="robotics-card__open" type="button">Open full build</button>
+    </article>
   </template>
 
   <script>
@@ -1807,12 +2401,11 @@ const filters = {
   search: ""
 };
 
-const departmentOptions = ["All", "Kids under 10", "Adults / advanced", "Robotics"];
-const categoryOptions = ["All", "Physics", "Chemistry", "Robotics"];
+const departmentOptions = ["All", "Kids under 10", "Adults / advanced"];
+const categoryOptions = ["All", "Physics", "Chemistry"];
 const topicGroups = {
   Physics: ["Magnetism", "Light", "Pressure", "Mechanics"],
-  Chemistry: ["Chemistry", "Crystals", "Fire"],
-  Robotics: ["Robot", "Car", "Plane"]
+  Chemistry: ["Chemistry", "Crystals", "Fire"]
 };
 const physicsTopicMap = {
   Magnetism: "Magnetism",
@@ -1825,17 +2418,21 @@ const physicsTopicMap = {
 };
 
 const experimentGrid = document.querySelector("#experimentGrid");
+const roboticsGrid = document.querySelector("#roboticsGrid");
 const detailPanel = document.querySelector("#detailPanel");
 const resultCount = document.querySelector("#resultCount");
 const searchInput = document.querySelector("#searchInput");
 const resetFilters = document.querySelector("#resetFilters");
 const cardTemplate = document.querySelector("#experimentCardTemplate");
+const roboticsCardTemplate = document.querySelector("#roboticsCardTemplate");
 const topicFilterGroup = document.querySelector("#topicFilterGroup");
 const topicLabel = document.querySelector("#topicLabel");
 const homePage = document.querySelector("#homePage");
 const experimentsPage = document.querySelector("#experimentsPage");
+const roboticsPage = document.querySelector("#roboticsPage");
 const detailPage = document.querySelector("#detailPage");
 const startButton = document.querySelector("#startButton");
+const roboticsButton = document.querySelector("#roboticsButton");
 const backToExperiments = document.querySelector("#backToExperiments");
 const adultGate = document.querySelector("#adultGate");
 const adultGatePanel = document.querySelector("#adultGatePanel");
@@ -1848,6 +2445,7 @@ const adultGateAgree = document.querySelector("#adultGateAgree");
 const adultGateBack = document.querySelector("#adultGateBack");
 
 let selectedId = experiments[0].id;
+let detailBackTarget = "experiments";
 
 function renderFilterButtons(containerId, options, key) {
   const container = document.querySelector(containerId);
@@ -1888,7 +2486,7 @@ function getExperimentCategory(experiment) {
     return "Chemistry";
   }
 
-  if (topicGroups.Robotics.includes(experiment.topic)) {
+  if (getExperimentDepartment(experiment) === "Robotics") {
     return "Robotics";
   }
 
@@ -1921,6 +2519,10 @@ function renderTopicFilters() {
 }
 
 function matchesFilters(experiment) {
+  if (getExperimentDepartment(experiment) === "Robotics") {
+    return false;
+  }
+
   const search = filters.search.trim().toLowerCase();
   const searchTarget = [
     experiment.title,
@@ -2031,6 +2633,45 @@ function stagesMarkup(stages) {
   });
 
   return wrap;
+}
+
+function roboticsProjects() {
+  return experiments.filter((experiment) => getExperimentDepartment(experiment) === "Robotics");
+}
+
+function renderRoboticsProjects() {
+  roboticsGrid.innerHTML = "";
+
+  roboticsProjects().forEach((project, index) => {
+    const card = roboticsCardTemplate.content.firstElementChild.cloneNode(true);
+    card.style.setProperty("--accent-step", index + 1);
+    card.querySelector(".robotics-card__type").textContent = project.topic;
+    card.querySelector(".robotics-card__time").textContent = project.time;
+    card.querySelector(".robotics-card__media").dataset.machine = project.topic;
+    card.querySelector("h2").textContent = project.title;
+    card.querySelector(".robotics-card__hook").textContent = project.hook;
+
+    const parts = card.querySelector(".robotics-card__parts");
+    parts.innerHTML = "<strong>Parts path</strong>";
+    project.parts.slice(0, 3).forEach((part) => {
+      const item = document.createElement("span");
+      item.textContent = `${part.name}: buy or salvage`;
+      parts.appendChild(item);
+    });
+
+    const stages = card.querySelector(".robotics-card__stages");
+    project.stages.forEach((stage, stageIndex) => {
+      const step = document.createElement("span");
+      step.textContent = `${stageIndex + 1}. ${stage.title.replace(/^Stage \d+ - /, "")}`;
+      stages.appendChild(step);
+    });
+
+    card.querySelector(".robotics-card__open").addEventListener("click", () => {
+      window.location.hash = `project/${project.id}`;
+    });
+
+    roboticsGrid.appendChild(card);
+  });
 }
 
 function renderDetail(experiment) {
@@ -2206,6 +2847,7 @@ function render() {
 
   const filteredExperiments = experiments.filter(matchesFilters);
   renderCards(filteredExperiments);
+  renderRoboticsProjects();
 }
 
 searchInput.addEventListener("input", (event) => {
@@ -2227,6 +2869,7 @@ function showPage(page) {
   hideAdultGate();
   homePage.classList.toggle("hidden", page !== "home");
   experimentsPage.classList.toggle("hidden", page !== "experiments");
+  roboticsPage.classList.toggle("hidden", page !== "robotics");
   detailPage.classList.toggle("hidden", page !== "detail");
 }
 
@@ -2236,7 +2879,16 @@ function route() {
   if (hash.startsWith("experiment/")) {
     const id = hash.split("/")[1];
     const experiment = experiments.find((item) => item.id === id) || experiments[0];
+
+    if (getExperimentDepartment(experiment) === "Robotics") {
+      window.location.hash = `project/${experiment.id}`;
+      return;
+    }
+
     selectedId = experiment.id;
+    detailBackTarget = "experiments";
+    detailPage.classList.remove("detail-page--robotics");
+    backToExperiments.textContent = "<- Back to experiments";
     showPage("detail");
     renderDetail(experiment);
 
@@ -2248,13 +2900,36 @@ function route() {
     return;
   }
 
+  if (hash.startsWith("project/")) {
+    const id = hash.split("/")[1];
+    const project = roboticsProjects().find((item) => item.id === id) || roboticsProjects()[0];
+    selectedId = project.id;
+    detailBackTarget = "robotics";
+    detailPage.classList.add("detail-page--robotics");
+    backToExperiments.textContent = "<- Back to robotics";
+    showPage("detail");
+    renderDetail(project);
+    window.scrollTo({ top: 0, behavior: "auto" });
+    return;
+  }
+
   if (hash === "experiments") {
+    detailPage.classList.remove("detail-page--robotics");
     showPage("experiments");
     render();
     window.scrollTo({ top: 0, behavior: "auto" });
     return;
   }
 
+  if (hash === "robotics") {
+    detailPage.classList.remove("detail-page--robotics");
+    showPage("robotics");
+    renderRoboticsProjects();
+    window.scrollTo({ top: 0, behavior: "auto" });
+    return;
+  }
+
+  detailPage.classList.remove("detail-page--robotics");
   showPage("home");
 }
 
@@ -2262,8 +2937,12 @@ startButton.addEventListener("click", () => {
   window.location.hash = "experiments";
 });
 
+roboticsButton.addEventListener("click", () => {
+  window.location.hash = "robotics";
+});
+
 backToExperiments.addEventListener("click", () => {
-  window.location.hash = "experiments";
+  window.location.hash = detailBackTarget;
 });
 
 adultGateConfirm.addEventListener("change", () => {
