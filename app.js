@@ -434,6 +434,163 @@ const experiments = [
     whatCouldGoWrong: "Adding fuel after ignition can cause a flash fire. Prevent it with a small setup, no refueling, goggles, and adult control of ignition.",
     why: "Heat excites electrons in boron atoms. When those electrons drop back down, they release energy as green light.",
     variation: "Compare this with a spectroscope page that shows element colors without flame."
+  },
+  {
+    id: "scrap-bot-rover",
+    title: "Build a Scrap-Bot Rover",
+    department: "Robotics",
+    topic: "Robot",
+    difficulty: "Builder",
+    time: "2-3 hours",
+    timeGroup: "Multi-stage",
+    materialsGroup: "Salvage + electronics",
+    risk: "Medium",
+    image: "assets/experiments/paper-bridge.png",
+    result: "Build a small moving robot rover from a simple chassis, motors, wheels, and a battery pack.",
+    hook: "Turn loose parts into a robot that actually drives.",
+    before: "You start with motors, cardboard or plastic, wires, and a pile of parts that do not look like a machine yet.",
+    during: "You build the body, mount the wheels, connect power, and test movement one system at a time.",
+    reveal: "The rover moves forward, turns, and becomes a platform you can upgrade later.",
+    materials: ["2 DC motors", "2 wheels", "Battery pack", "Switch", "Wires", "Cardboard or plastic chassis", "Tape or hot glue", "Skewer or axle"],
+    parts: [
+      { name: "DC motors", buy: "Buy a 3-6V hobby motor pair", salvage: "Take from a broken toy car, handheld fan, or old electric toothbrush" },
+      { name: "Wheels", buy: "Buy small robot wheels", salvage: "Use bottle caps, toy car wheels, or round plastic lids" },
+      { name: "Chassis", buy: "Buy acrylic robot chassis", salvage: "Cut from cardboard, food-container plastic, or scrap foam board" },
+      { name: "Battery pack", buy: "Buy AA battery holder", salvage: "Reuse a holder from a broken toy or small LED decoration" },
+      { name: "Switch", buy: "Buy a mini slide switch", salvage: "Reuse a switch from a broken flashlight or toy" }
+    ],
+    stages: [
+      {
+        title: "Stage 1 - Chassis design",
+        video: "Video placeholder",
+        tasks: ["Sketch the rover from the top.", "Mark where the motors, wheels, battery, and switch will sit.", "Cut a flat chassis that is wide enough not to tip over."]
+      },
+      {
+        title: "Stage 2 - Drive system",
+        video: "Video placeholder",
+        tasks: ["Mount the motors opposite each other.", "Attach wheels and check that both spin freely.", "Add a rear skid or small caster so the rover balances."]
+      },
+      {
+        title: "Stage 3 - Electronics",
+        video: "Video placeholder",
+        tasks: ["Connect the battery pack through the switch.", "Wire both motors and test forward motion.", "Reverse one motor wire if the rover spins in place."]
+      },
+      {
+        title: "Stage 4 - Test and upgrade",
+        video: "Video placeholder",
+        tasks: ["Run a straight-line test.", "Move weight around until it drives smoothly.", "Add a bumper, decoration, or simple sensor later."]
+      }
+    ],
+    hazard: "Use low-voltage batteries only. Do not connect motors directly to wall power, and stop if wires heat up.",
+    steps: ["Build the chassis.", "Mount the motors and wheels.", "Wire the battery and switch.", "Test movement and balance."],
+    observe: ["Does the rover pull left or right?", "Do the wheels slip?", "Does the battery placement change stability?"],
+    whatCouldGoWrong: "Wires can heat if shorted, and hot glue can burn skin. Prevent this by using low voltage, checking connections, and letting glue cool before touching.",
+    why: "A robot rover converts electrical energy from the battery into motor rotation. The chassis turns that rotation into controlled movement.",
+    variation: "Add a cardboard scoop, LED headlights, or a simple obstacle bumper."
+  },
+  {
+    id: "rubber-band-car",
+    title: "Build a Rubber-Band Speed Car",
+    department: "Robotics",
+    topic: "Car",
+    difficulty: "Builder",
+    time: "90 min",
+    timeGroup: "Multi-stage",
+    materialsGroup: "Home + salvage",
+    risk: "Low",
+    image: "assets/experiments/paper-bridge.png",
+    result: "Build a small car powered by stored elastic energy instead of batteries.",
+    hook: "A rubber band becomes an engine.",
+    before: "The car starts as sticks, caps, and a rubber band.",
+    during: "You align axles, reduce friction, and wind the rubber band motor.",
+    reveal: "The car launches forward and shows how stored energy becomes motion.",
+    materials: ["Cardboard body", "4 wheels", "2 skewers or axles", "Rubber bands", "Straws", "Tape", "Bottle caps or toy wheels"],
+    parts: [
+      { name: "Wheels", buy: "Buy model wheels", salvage: "Use bottle caps, toy car wheels, jar lids, or cardboard circles" },
+      { name: "Axles", buy: "Buy wooden dowels", salvage: "Use skewers, straight sticks, or old toy axles" },
+      { name: "Body", buy: "Buy foam board", salvage: "Use cardboard from packaging or a plastic food tray" },
+      { name: "Motor band", buy: "Buy strong rubber bands", salvage: "Use thick packaging bands if they are not cracked" }
+    ],
+    stages: [
+      {
+        title: "Stage 1 - Body and axle layout",
+        video: "Video placeholder",
+        tasks: ["Cut a lightweight body.", "Tape straw pieces as axle guides.", "Make sure the axles are parallel."]
+      },
+      {
+        title: "Stage 2 - Wheel alignment",
+        video: "Video placeholder",
+        tasks: ["Attach wheels to both axles.", "Spin each wheel and look for wobble.", "Adjust until the car rolls straight."]
+      },
+      {
+        title: "Stage 3 - Rubber-band motor",
+        video: "Video placeholder",
+        tasks: ["Anchor one end of the rubber band to the body.", "Loop the other end around the rear axle.", "Wind the axle and release on the floor."]
+      },
+      {
+        title: "Stage 4 - Race tuning",
+        video: "Video placeholder",
+        tasks: ["Test distance.", "Reduce friction where axles touch straws.", "Change wheel size and compare speed."]
+      }
+    ],
+    hazard: "Rubber bands can snap. Keep faces away while winding and do not aim the car at people.",
+    steps: ["Build the body.", "Mount wheels and axles.", "Add the rubber-band drive.", "Tune for distance and speed."],
+    observe: ["Does the car drive straight?", "Does a bigger wheel go farther?", "Where is friction stealing energy?"],
+    whatCouldGoWrong: "The rubber band can snap or the car can hit someone. Prevent this by aiming at open floor and keeping faces away while winding.",
+    why: "Winding the rubber band stores elastic potential energy. When released, that energy spins the axle and pushes the car forward.",
+    variation: "Build two cars with different wheel sizes and race them."
+  },
+  {
+    id: "foam-glider-plane",
+    title: "Build a Foam Glider Plane",
+    department: "Robotics",
+    topic: "Plane",
+    difficulty: "Builder",
+    time: "2 hours",
+    timeGroup: "Multi-stage",
+    materialsGroup: "Home + salvage",
+    risk: "Low",
+    image: "assets/experiments/water-lens.png",
+    result: "Build and tune a hand-launched plane that glides instead of immediately falling.",
+    hook: "A flat sheet becomes a flying machine.",
+    before: "The foam or cardboard looks too simple to fly.",
+    during: "You shape wings, balance the center of gravity, and tune the tail.",
+    reveal: "The plane glides farther after every small design correction.",
+    materials: ["Foam tray or thin cardboard", "Tape", "Scissors", "Paper clips", "Ruler", "Pencil", "Optional small salvaged motor"],
+    parts: [
+      { name: "Wing material", buy: "Buy thin foam board", salvage: "Use a clean foam food tray, packaging foam, or cereal-box cardboard" },
+      { name: "Nose weight", buy: "Buy small modeling weights", salvage: "Use paper clips, coins, or a small nut" },
+      { name: "Tail stabilizer", buy: "Buy balsa sheet", salvage: "Use cardboard scraps or plastic packaging" },
+      { name: "Optional motor", buy: "Buy a micro motor kit", salvage: "Reuse a tiny motor from a toy drone, toy car, or handheld fan" }
+    ],
+    stages: [
+      {
+        title: "Stage 1 - Wing and body design",
+        video: "Video placeholder",
+        tasks: ["Draw a long body and wide wings.", "Cut smooth edges.", "Keep the left and right wing shapes equal."]
+      },
+      {
+        title: "Stage 2 - Tail and balance",
+        video: "Video placeholder",
+        tasks: ["Add a horizontal tail and vertical fin.", "Add paper clips to the nose.", "Balance the plane near the front third of the wing."]
+      },
+      {
+        title: "Stage 3 - Glide testing",
+        video: "Video placeholder",
+        tasks: ["Launch gently indoors or outside with no wind.", "If it dives, remove nose weight or raise the tail slightly.", "If it stalls upward, add nose weight."]
+      },
+      {
+        title: "Stage 4 - Optional powered upgrade",
+        video: "Video placeholder",
+        tasks: ["Mount a tiny salvaged motor only after the glider works.", "Keep the propeller small and guarded.", "Test power briefly and retune balance."]
+      }
+    ],
+    hazard: "Scissors can cut, and propellers can hurt fingers if you add a motor. Test gliding first and keep powered tests brief.",
+    steps: ["Cut the plane body and wings.", "Add tail surfaces.", "Balance with nose weight.", "Test and tune the glide."],
+    observe: ["Does the plane dive, stall, or glide?", "Where is the center of gravity?", "Does the tail angle change the flight path?"],
+    whatCouldGoWrong: "A powered propeller can hit fingers, and a bad launch can hit someone. Prevent this with gentle glider tests first and a clear flight area.",
+    why: "The wing and tail control lift, drag, and stability. Small changes in weight and tail angle can completely change the flight path.",
+    variation: "Build two wing shapes and compare which glides farther."
   }
 ];
 
@@ -444,11 +601,21 @@ const filters = {
   search: ""
 };
 
-const departmentOptions = ["All", "Kids under 10", "Adults / advanced"];
-const categoryOptions = ["All", "Physics", "Chemistry"];
+const departmentOptions = ["All", "Kids under 10", "Adults / advanced", "Robotics"];
+const categoryOptions = ["All", "Physics", "Chemistry", "Robotics"];
 const topicGroups = {
-  Physics: ["Magnetism", "Density", "Electricity", "Light", "Pressure", "Engineering", "Plasma"],
-  Chemistry: ["Chemistry", "Crystals", "Fire"]
+  Physics: ["Magnetism", "Light", "Pressure", "Mechanics"],
+  Chemistry: ["Chemistry", "Crystals", "Fire"],
+  Robotics: ["Robot", "Car", "Plane"]
+};
+const physicsTopicMap = {
+  Magnetism: "Magnetism",
+  Light: "Light",
+  Pressure: "Pressure",
+  Density: "Mechanics",
+  Electricity: "Mechanics",
+  Engineering: "Mechanics",
+  Plasma: "Mechanics"
 };
 
 const experimentGrid = document.querySelector("#experimentGrid");
@@ -507,7 +674,7 @@ function renderFilterButtons(containerId, options, key) {
 }
 
 function getExperimentCategory(experiment) {
-  if (topicGroups.Physics.includes(experiment.topic)) {
+  if (physicsTopicMap[experiment.topic]) {
     return "Physics";
   }
 
@@ -515,7 +682,19 @@ function getExperimentCategory(experiment) {
     return "Chemistry";
   }
 
+  if (topicGroups.Robotics.includes(experiment.topic)) {
+    return "Robotics";
+  }
+
   return "Other";
+}
+
+function getExperimentTopic(experiment) {
+  if (getExperimentCategory(experiment) === "Physics") {
+    return physicsTopicMap[experiment.topic];
+  }
+
+  return experiment.topic;
 }
 
 function getExperimentDepartment(experiment) {
@@ -540,6 +719,7 @@ function matchesFilters(experiment) {
   const searchTarget = [
     experiment.title,
     experiment.topic,
+    getExperimentTopic(experiment),
     experiment.result,
     experiment.hook,
     experiment.materials.join(" "),
@@ -548,7 +728,7 @@ function matchesFilters(experiment) {
 
   return (filters.department === "All" || getExperimentDepartment(experiment) === filters.department)
     && (filters.category === "All" || getExperimentCategory(experiment) === filters.category)
-    && (filters.topic === "All" || experiment.topic === filters.topic)
+    && (filters.topic === "All" || getExperimentTopic(experiment) === filters.topic)
     && (!search || searchTarget.includes(search));
 }
 
@@ -577,7 +757,7 @@ function renderCards(filteredExperiments) {
     const preview = card.querySelector(".preview-art");
     preview.classList.add("has-photo");
     preview.style.backgroundImage = `url("${experiment.image}")`;
-    card.querySelector(".card-meta").textContent = experiment.topic;
+    card.querySelector(".card-meta").textContent = getExperimentTopic(experiment);
     card.querySelector(".card-title").textContent = experiment.title;
     card.querySelector(".card-result").textContent = experiment.hook;
     card.querySelector(".card-stats").textContent = `${safetyLabel(experiment.risk)} / ${experiment.time}`;
@@ -605,6 +785,46 @@ function listMarkup(items, ordered = false) {
   });
 
   return list;
+}
+
+function partsMarkup(parts) {
+  const wrap = document.createElement("div");
+  wrap.className = "parts-list";
+
+  parts.forEach((part) => {
+    const item = document.createElement("article");
+    item.className = "part-option";
+    item.innerHTML = `
+      <h4>${part.name}</h4>
+      <p><strong>Buy:</strong> ${part.buy}</p>
+      <p><strong>Use what you have:</strong> ${part.salvage}</p>
+    `;
+    wrap.appendChild(item);
+  });
+
+  return wrap;
+}
+
+function stagesMarkup(stages) {
+  const wrap = document.createElement("div");
+  wrap.className = "project-stages";
+
+  stages.forEach((stage, index) => {
+    const item = document.createElement("article");
+    item.className = "project-stage";
+    item.innerHTML = `
+      <div class="video-placeholder" aria-label="${stage.video}">
+        <span>Video ${index + 1}</span>
+      </div>
+      <div class="stage-copy">
+        <h4>${stage.title}</h4>
+      </div>
+    `;
+    item.querySelector(".stage-copy").appendChild(listMarkup(stage.tasks));
+    wrap.appendChild(item);
+  });
+
+  return wrap;
 }
 
 function renderDetail(experiment) {
@@ -652,7 +872,9 @@ function renderDetail(experiment) {
 
   const sections = [
     ...(experiment.safetyGear ? [["Mandatory gear", listMarkup(experiment.safetyGear)]] : []),
+    ...(experiment.parts ? [["Parts: buy or salvage", partsMarkup(experiment.parts)]] : []),
     ["You need", listMarkup(experiment.materials)],
+    ...(experiment.stages ? [["Build stages", stagesMarkup(experiment.stages)]] : []),
     [getExperimentDepartment(experiment) === "Adults / advanced" ? "Action flow" : "Steps", listMarkup(experiment.steps, true)],
     ...(experiment.observe ? [["What to watch for", listMarkup(experiment.observe)]] : []),
     ...(experiment.whatCouldGoWrong ? [["What could go wrong?", experiment.whatCouldGoWrong]] : []),
